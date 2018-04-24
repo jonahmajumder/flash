@@ -1,0 +1,39 @@
+Respiratory gases - gases that organisms must exchange with their environments (i.e. O2 and CO2)
+Fick's law of diffusion - the equation for the rate of diffusion across a distance, Q = A*D*(P1-P2)/L
+Gills - branched and folded extensions of the body that provide a large surface area for gas exchange and minimize path length with thin tissue, in water-breathing organisms
+Internal gills - gills located inside protective body cavities
+Lungs - large internal cavities for gas exchange in air-breathing organisms that are inflated and deflated
+Tracheae - small air-filled tubes in insects that branch through the body and bring air directly to the tissues for gas exchange
+Partial pressure gradient - the quantity (P1-P2)/L that drives diffusion (per unit area)
+Ventilation - active movement of the external medium in gas exchange to create a local partial pressure more favorable for diffusion (typically higher PO2 in air/water)
+Perfusion - active movement of the internal medium in gas exchange to create a local partial pressure more favorable for diffusion (typically lower PO2 in blood)
+Afferent (blood) - deoxygenated, i.e. having a low PO2
+Efferent (blood) - oxygenated, i.e. having a high PO2
+Countercurrent flow - a scheme of gas exchange where the exchanging fluids flow in opposite directions, and the partial pressure gradient is maintained along the full length of the exchange medium
+Dead space - the (deoxygenated) air remaining in lungs after exhalation, which dilutes fresh air and reduces the partial pressure gradient
+Trachea - the main entry and exit point airway in vertebrates, covered by C-shaped bands of cartilage, also known as the "windpipe"
+Tidal ventilation - the unidirectional scheme of gas exchange in which air must come in and leave through the same route, creating dead space
+Tidal volume - the amount of air that moves in and out of the lungs in a single breath, at rest
+Vital capacity - the maximum capacity for air exchange in a single breath
+Residual capacity/volume - the amount of air remaining in the lungs after maximum exhalation, which is the dead space
+
+Pharynx - the passageway immediately following the joining of the oral cavity and nasal passage, which branches into the esophagus and the trachea
+Larynx - the voice box, which appears at the beginning of the trachea, houses the vocal chords (also known as the "Adam's apple")
+Bronchi - the major sub-airways with cartilage supports, into which the trachea of vertebrates first divides, which branch in total about 4 times
+Bronchioles - the smaller airways without cartilage support into which the bronchi divide, which branch about 16 times
+Alveoli - the tiny, thin walled sacs which are the sites of gas exchange, and appear in small clusters; human lungs have about 300 million, whose combined respiratory surface area is about 70 m2
+Mucus - the sticky substance produced by cells lining airways in order to capture dirt and debris and carry it to the pharynx via the "mucus escalator"
+Surfactant - a substance that reduces surface tension; it reduces surface tension of the fluid film covering the alveoli and reduces the work necessary to inflate the lungs
+Thoracic cavity - the closed compartment in which humans' lungs are suspended, bounded at the bottom by the diaphragm muscle
+Diaphragm - the sheet of muscle at the bottom of the thoracic cavity, contraction (relaxation) of which increases the volume of the thoracic cavity and creates inhalation (exhalation)
+Pleural membranes - the this sheets of tissue that cover each lung and line the thoracic cavity
+Elastic recoil - the elasticity of the lung tissues that cause the lungs to pull the diaphragm back up when it relaxes, and thereby push air out through the airways
+Intercostal muscles - the sets of muscles between the ribs which pull the ribs up and outward to aid in expansion of the thoracic cavity (external) and pull the ribs down and inward to decrease the volume of the thoracic cavity (internal)
+
+Hemoglobin - the molecule primarily responsible for transporting oxygen in blood in vertebrates, consisting of 4 polypeptide subunits, each with a "heme" group that can bind a single O2 molecule
+Positive cooperativity - the increase in oxygen affinity due to the binding of a hemoglobin molecule to an oxygen molecule
+Probability phenomenon - the decrease in likelihood that a free oxygen molecule will find an unbound hemoglobin binding site as the number of oxygen molecules bound increases
+Oxygen dissociation curve (for hemoglobin) - the characteristic relationship between the PO2 in blood and % of hemoglobin binding sites occupied
+Myoglobin - the oxygen-binding molecule in muscles, which has a higher affinity for O2 than hemoglobin, facilitating transfer of O2 from hemoglobin to myoglobin
+Bicarbonate ion - the HCO3- ion present from the equilibrium of H2O and CO2 with carbonic acid (which then loses a proton), which the primary form of CO2 transported in the blood
+Carbonic anhydrase - the enzyme that catalyzes the conversion of CO2 + H2O = H2CO3 (in both directions), but only in cells

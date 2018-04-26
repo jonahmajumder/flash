@@ -5,6 +5,10 @@ import time
 from PyQt4 import QtCore, QtGui, uic
 from get_files import get_file_list
 
+REPEAT = u'\u21BA'
+CHECK = u'\u2713'
+XMARK = 'X'
+
 def parse_file_for_vocab(filename, delimiter='-'):
     file = open(filename, 'r')
     lines = file.readlines()
@@ -23,6 +27,9 @@ def delete_message(deck_name):
     return s
 
 class ImageDialog(QtGui.QMainWindow):
+
+    # ---------- init function ----------
+
     def __init__(self):
         QtGui.QDialog.__init__(self)
 
@@ -40,7 +47,7 @@ class ImageDialog(QtGui.QMainWindow):
         self.load_message_ui()
         self.ready_ui()
 
-    # ---------- end init function ----------
+    # ---------- gui preparation (and start) function ----------
 
     def ready_ui(self):
         self.ui.setWindowTitle('Flash')
@@ -48,12 +55,15 @@ class ImageDialog(QtGui.QMainWindow):
         self.ui.delimTextEdit.setText('-')
         self.get_saved_decks()
         self.evaluate_randomize()
+        self.evaluate_repetition()
 
         # when everything is ready
         self.ui.mainStack.setCurrentIndex(0)
         self.ui.show()
         self.ui.raise_()
         return
+
+    # ---------- auxiliary prep functions ----------
 
     def connect_buttons(self):
         self.ui.startButton.clicked.connect(self.start_testing)
@@ -69,6 +79,12 @@ class ImageDialog(QtGui.QMainWindow):
 
     def evaluate_repetition(self):
         self.repeat_until_done = self.ui.untilDoneButton.isChecked()
+        if self.ui.untilDoneButton.isChecked():
+            self.ui.incorrectButton.setText(REPEAT)
+            self.ui.incorrectButton.setStyleSheet('QPushButton {color: rgb(0, 0, 255); font: bold 30pt "Meiryo";}')
+        else:
+            self.ui.incorrectButton.setText(XMARK)
+            self.ui.incorrectButton.setStyleSheet('QPushButton {color: rgb(255, 0, 0); font: bold 24pt "Palatino Linotype";}')
         return
 
     def evaluate_randomize(self):
@@ -93,6 +109,8 @@ class ImageDialog(QtGui.QMainWindow):
         self.message_ui.okButton.clicked.connect(lambda: self.message_ui.close())
         return
 
+    # ---------- user input functions ----------
+
     def get_deck_name(self):
         retval = self.naming_ui.exec_()
         entered_name = str(self.naming_ui.nameTextEdit.toPlainText())
@@ -100,6 +118,13 @@ class ImageDialog(QtGui.QMainWindow):
             return entered_name
         else:
             return ''
+
+    def show_message(self, message):
+        self.message_ui.messageLabel.setText(message)
+        retval = self.message_ui.exec_()
+        return retval
+
+    # ---------- active functions ----------
 
     def get_deck_txt_file(self):
         delim = str(self.ui.delimTextEdit.toPlainText())
@@ -155,11 +180,6 @@ class ImageDialog(QtGui.QMainWindow):
                 self.loaded_deck_files[deck[0]] = deck_file
                 self.ui.loadedDecks.addItem(deck[0])
         return
-
-    def show_message(self, message):
-        self.message_ui.messageLabel.setText(message)
-        retval = self.message_ui.exec_()
-        return retval
 
     def delete_deck_function(self):
         current_deck_name = str(self.ui.loadedDecks.currentText())

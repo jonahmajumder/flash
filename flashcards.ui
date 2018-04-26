@@ -71,7 +71,7 @@ background-color: rgb(0, 0, 128);</string>
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="loadPage">
        <property name="sizePolicy">
@@ -79,6 +79,11 @@ background-color: rgb(0, 0, 128);</string>
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <family>Century</family>
+        </font>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
@@ -101,12 +106,12 @@ background-color: rgb(0, 0, 128);</string>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
-              <height>40</height>
+              <height>50</height>
              </size>
             </property>
             <property name="font">
              <font>
-              <family>Adobe Arabic</family>
+              <family>Century</family>
               <pointsize>30</pointsize>
              </font>
             </property>
@@ -254,8 +259,8 @@ background-color: rgb(0, 0, 128);</string>
                <widget class="QLabel" name="importLabel">
                 <property name="font">
                  <font>
-                  <family>Adobe Arabic</family>
-                  <pointsize>20</pointsize>
+                  <family>Century</family>
+                  <pointsize>14</pointsize>
                  </font>
                 </property>
                 <property name="styleSheet">
@@ -273,8 +278,8 @@ background-color: rgb(0, 0, 128);</string>
                <widget class="QPushButton" name="importButton">
                 <property name="font">
                  <font>
-                  <family>Adobe Arabic</family>
-                  <pointsize>17</pointsize>
+                  <family>Century</family>
+                  <pointsize>12</pointsize>
                  </font>
                 </property>
                 <property name="styleSheet">
@@ -298,8 +303,8 @@ color: rgb(0, 0, 0);</string>
                   </property>
                   <property name="font">
                    <font>
-                    <family>Adobe Arabic</family>
-                    <pointsize>20</pointsize>
+                    <family>Century</family>
+                    <pointsize>12</pointsize>
                    </font>
                   </property>
                   <property name="text">
@@ -339,15 +344,17 @@ color: rgb(0, 0, 0);</string>
                   </property>
                   <property name="font">
                    <font>
-                    <family>.SF NS Text</family>
-                    <pointsize>24</pointsize>
+                    <family>Century</family>
+                    <pointsize>14</pointsize>
+                    <weight>75</weight>
+                    <bold>true</bold>
                    </font>
                   </property>
                   <property name="autoFillBackground">
                    <bool>false</bool>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color: rgb(204, 204, 204);
+                   <string notr="true">background-color: rgb(255, 255, 255);
 color: rgb(0, 0, 0);</string>
                   </property>
                   <property name="inputMethodHints">
@@ -448,8 +455,8 @@ color: rgb(0, 0, 0);</string>
                <widget class="QLabel" name="loadedLabel">
                 <property name="font">
                  <font>
-                  <family>Adobe Arabic</family>
-                  <pointsize>20</pointsize>
+                  <family>Century</family>
+                  <pointsize>14</pointsize>
                  </font>
                 </property>
                 <property name="styleSheet">
@@ -467,8 +474,8 @@ color: rgb(0, 0, 0);</string>
                <widget class="QComboBox" name="loadedDecks">
                 <property name="font">
                  <font>
-                  <family>Adobe Arabic</family>
-                  <pointsize>18</pointsize>
+                  <family>Century</family>
+                  <pointsize>12</pointsize>
                  </font>
                 </property>
                 <property name="styleSheet">
@@ -494,8 +501,8 @@ background-color: rgb(255, 255, 255);</string>
                <widget class="QPushButton" name="stageButton">
                 <property name="font">
                  <font>
-                  <family>Adobe Arabic</family>
-                  <pointsize>17</pointsize>
+                  <family>Century</family>
+                  <pointsize>12</pointsize>
                  </font>
                 </property>
                 <property name="styleSheet">
@@ -511,8 +518,8 @@ color: rgb(0, 0, 0);</string>
                <widget class="QPushButton" name="deleteButton">
                 <property name="font">
                  <font>
-                  <family>Adobe Arabic</family>
-                  <pointsize>17</pointsize>
+                  <family>Century</family>
+                  <pointsize>12</pointsize>
                  </font>
                 </property>
                 <property name="styleSheet">
@@ -596,8 +603,8 @@ color: rgb(0, 0, 0);</string>
                 </property>
                 <property name="font">
                  <font>
-                  <family>Adobe Arabic</family>
-                  <pointsize>20</pointsize>
+                  <family>Century</family>
+                  <pointsize>14</pointsize>
                   <weight>50</weight>
                   <bold>false</bold>
                  </font>
@@ -632,7 +639,8 @@ color: rgb(0, 0, 0);</string>
                 </property>
                 <property name="font">
                  <font>
-                  <pointsize>13</pointsize>
+                  <family>Century</family>
+                  <pointsize>12</pointsize>
                  </font>
                 </property>
                 <property name="styleSheet">
@@ -747,8 +755,8 @@ color: rgb(0, 0, 0);</string>
               <widget class="QCheckBox" name="randomCheckBox">
                <property name="font">
                 <font>
-                 <family>Adobe Arabic</family>
-                 <pointsize>18</pointsize>
+                 <family>Century</family>
+                 <pointsize>12</pointsize>
                 </font>
                </property>
                <property name="styleSheet">
@@ -800,8 +808,8 @@ color: rgb(0, 0, 0);</string>
             </property>
             <property name="font">
              <font>
-              <family>Adobe Arabic</family>
-              <pointsize>20</pointsize>
+              <family>Century</family>
+              <pointsize>12</pointsize>
              </font>
             </property>
             <property name="styleSheet">
@@ -851,8 +859,8 @@ color: rgb(0, 0, 0);</string>
               <widget class="QRadioButton" name="onceButton">
                <property name="font">
                 <font>
-                 <family>Adobe Arabic</family>
-                 <pointsize>18</pointsize>
+                 <family>Century</family>
+                 <pointsize>12</pointsize>
                 </font>
                </property>
                <property name="styleSheet">
@@ -876,8 +884,8 @@ color: rgb(0, 0, 0);</string>
                </property>
                <property name="font">
                 <font>
-                 <family>Adobe Arabic</family>
-                 <pointsize>18</pointsize>
+                 <family>Century</family>
+                 <pointsize>12</pointsize>
                 </font>
                </property>
                <property name="styleSheet">
@@ -1226,17 +1234,19 @@ background-color: rgb(1, 0, 177);</string>
                   </property>
                   <property name="font">
                    <font>
-                    <family>.SF NS Text</family>
-                    <pointsize>22</pointsize>
-                    <weight>50</weight>
-                    <bold>false</bold>
+                    <family>Palatino Linotype</family>
+                    <pointsize>24</pointsize>
+                    <weight>75</weight>
+                    <italic>false</italic>
+                    <bold>true</bold>
                    </font>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true"/>
+                   <string notr="true">color: rgb(255, 0, 0); 
+font: bold 24pt &quot;Palatino Linotype&quot;;</string>
                   </property>
                   <property name="text">
-                   <string>⤹</string>
+                   <string>X</string>
                   </property>
                  </widget>
                 </item>
@@ -1269,17 +1279,18 @@ background-color: rgb(1, 0, 177);</string>
                   </property>
                   <property name="font">
                    <font>
-                    <family>.SF NS Text</family>
-                    <pointsize>19</pointsize>
+                    <family>Certificate</family>
+                    <pointsize>24</pointsize>
                     <weight>50</weight>
                     <bold>false</bold>
                    </font>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true"/>
+                   <string notr="true">color: rgb(0, 200, 0); border-radius: 5 px;
+background-color: rgb(204, 102, 255);</string>
                   </property>
                   <property name="text">
-                   <string>⤵</string>
+                   <string>✓</string>
                   </property>
                  </widget>
                 </item>

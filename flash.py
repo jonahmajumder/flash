@@ -41,6 +41,8 @@ class ImageDialog(QtGui.QMainWindow):
         self.staged_deck_name = None
         self.repeat_until_done = True
         self.randomize = True
+        self.word_index = 0
+        self.remaining_words = []
 
         self.load_naming_ui()
         self.load_confirm_ui()
@@ -75,6 +77,8 @@ class ImageDialog(QtGui.QMainWindow):
         self.ui.randomCheckBox.clicked.connect(self.evaluate_randomize)
         self.ui.onceButton.clicked.connect(self.evaluate_repetition)
         self.ui.untilDoneButton.clicked.connect(self.evaluate_repetition)
+        self.ui.correctButton.clicked.connect(lambda: self.next_word(True))
+        self.ui.incorrectButton.clicked.connect(lambda: self.next_word(False))
         return
 
     def evaluate_repetition(self):
@@ -152,8 +156,63 @@ class ImageDialog(QtGui.QMainWindow):
             r = self.show_message('No deck in preview window.')
             return
         self.ui.mainStack.setCurrentIndex(1)
+
+        self.ui.cardProgressBar.setMinimum(0)
+        self.ui.cardProgressBar.setMaximum(len(self.loaded_decks[self.staged_deck_name]))
+        self.ui.cardProgressBar.reset()
+
+        self.reset_clock()
+        self.card_setup()
+        return
+
+    def card_setup(self):
+        self.remaining_words = self.loaded_decks[self.staged_deck_name][:]
+
+        if self.randomize:
+            shuffle(self.remaining_words)
+
+        self.update_card()
+
+        return
+
+    def reset_clock(self):
+        # empty function, fill it in later with QTimer widget??
+        return
+
+    def update_card(self):
+        Nwords = len(self.loaded_decks[self.staged_deck_name])
+
+        self.set_card_front(self.remaining_words[0][0])
+        self.set_card_back(self.remaining_words[0][1])
+
+        self.ui.cardProgressBar.setValue(Nwords - len(self.remaining_words))
+        print '{0} left (of {1})'.format(len(self.remaining_words), Nwords)
         self.ui.cardStack.setCurrentIndex(0)
-        self.ui.cardProgressBar.setValue(0)
+        return
+
+    def next_word(self, correct):
+        current_word = self.remaining_words[0]
+
+        del(self.remaining_words[0])
+        if not correct:
+            if self.repeat_until_done:
+                self.remaining_words.append(current_word)
+
+        if self.randomize:
+            shuffle(self.remaining_words)
+
+        if len(self.remaining_words) > 0:
+            self.update_card()
+        else:
+            self.done_function()
+        return
+
+    def set_card_front(self, text):
+        self.ui.wordLabel.setText(text)
+        return
+
+    def set_card_back(self, text):
+        self.ui.defLabel.setText(text)
         return
 
     def back_to_load(self):
@@ -163,6 +222,14 @@ class ImageDialog(QtGui.QMainWindow):
     def flip_card(self):
         self.ui.cardStack.setCurrentIndex(1)
         return
+
+    def done_function(self):
+        self.ui.cardProgressBar.setValue(Nwords)
+        r = self.show_message('Finished deck!')
+        self.back_to_load()
+        return
+
+    # ---------- deck save/load/delete functions ----------
 
     def get_saved_decks(self):
         filenames = get_file_list(self.ui_dir)

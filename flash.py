@@ -40,7 +40,7 @@ class ImageDialog(QtGui.QMainWindow):
 
         # get ui
         self.ui = uic.loadUi(resource_file('flashcards.ui'))
-        self.ui_dir = resource_file('.')
+        self.resource_dir = resource_file('.')
         self.loaded_decks = {}
         self.loaded_deck_files = {}
         self.staged_deck_name = None
@@ -139,12 +139,14 @@ class ImageDialog(QtGui.QMainWindow):
     def get_deck_txt_file(self):
         delim = str(self.ui.delimTextEdit.toPlainText())
         delim = delim.strip(' ')
+        default_dir = self.resource_dir
+        
         if len(delim) == 0:
             r = self.show_message('No text file delimiter specified.')
             return
         else:
             d = QtGui.QFileDialog
-            filename = d.getOpenFileName(self, 'Open text file', self.ui_dir)
+            filename = d.getOpenFileName(self, 'Open text file', default_dir)
             if len(filename) > 0:
                 words = parse_file_for_vocab(filename, delim)
                 if len(words) > 0:
@@ -238,7 +240,7 @@ class ImageDialog(QtGui.QMainWindow):
     # ---------- deck save/load/delete functions ----------
 
     def get_saved_decks(self):
-        filenames = get_file_list(self.ui_dir)
+        filenames = get_file_list(self.resource_dir)
         deck_files = []
         for name in filenames:
             if (os.path.splitext(name)[1] == '.deck'): # compare extension of file to deck

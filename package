@@ -1,0 +1,16 @@
+#!/bin/bash
+# package python program to .app
+
+echo "Running script to package Flash app..."
+
+rm setup.py
+
+py2applet --make-setup Flash.py *.ui FlashIcon.icns
+
+rm -rf build dist
+
+python setup.py py2app
+
+cp *.ui ./dist/Flash.app/Contents/MacOS/
+
+

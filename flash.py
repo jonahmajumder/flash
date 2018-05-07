@@ -26,6 +26,11 @@ def delete_message(deck_name):
     s = 'Are you sure you want to delete "{}"?\n(Original text file will not be touched.)'.format(deck_name)
     return s
 
+def resource_file(filename):
+    filedir = os.path.dirname(__file__)
+    p = os.path.join(filedir, filename)
+    return p
+
 class ImageDialog(QtGui.QMainWindow):
 
     # ---------- init function ----------
@@ -34,8 +39,8 @@ class ImageDialog(QtGui.QMainWindow):
         QtGui.QDialog.__init__(self)
 
         # get ui
-        self.ui = uic.loadUi("flashcards.ui")
-        self.ui_dir = os.path.dirname(os.path.abspath(__file__))
+        self.ui = uic.loadUi(resource_file('flashcards.ui'))
+        self.ui_dir = resource_file('.')
         self.loaded_decks = {}
         self.loaded_deck_files = {}
         self.staged_deck_name = None
@@ -96,19 +101,19 @@ class ImageDialog(QtGui.QMainWindow):
         return
 
     def load_naming_ui(self):
-        self.naming_ui = uic.loadUi("namemsgbox.ui")
+        self.naming_ui = uic.loadUi(resource_file('namemsgbox.ui'))
         self.naming_ui.setWindowTitle('Name Deck')
         self.naming_ui.buttonDialog.setStandardButtons(QtGui.QDialogButtonBox.Cancel | QtGui.QDialogButtonBox.Ok)
         return
 
     def load_confirm_ui(self):
-        self.confirm_ui = uic.loadUi("confirmdelete.ui")
+        self.confirm_ui = uic.loadUi(resource_file('confirmdelete.ui'))
         self.confirm_ui.setWindowTitle('Confirm Delete')
         self.confirm_ui.buttonDialog.setStandardButtons(QtGui.QDialogButtonBox.Cancel | QtGui.QDialogButtonBox.Ok)
         return
 
     def load_message_ui(self):
-        self.message_ui = uic.loadUi("message.ui")
+        self.message_ui = uic.loadUi(resource_file('message.ui'))
         self.message_ui.setWindowTitle('Alert')
         self.message_ui.okButton.clicked.connect(lambda: self.message_ui.close())
         return
@@ -118,6 +123,7 @@ class ImageDialog(QtGui.QMainWindow):
     def get_deck_name(self):
         retval = self.naming_ui.exec_()
         entered_name = str(self.naming_ui.nameTextEdit.toPlainText())
+        self.naming_ui.nameTextEdit.setPlainText('')
         if (retval == 1):
             return entered_name
         else:
@@ -138,7 +144,7 @@ class ImageDialog(QtGui.QMainWindow):
             return
         else:
             d = QtGui.QFileDialog
-            filename = d.getOpenFileName(self, 'Open text file', os.getcwd())
+            filename = d.getOpenFileName(self, 'Open text file', self.ui_dir)
             if len(filename) > 0:
                 words = parse_file_for_vocab(filename, delim)
                 if len(words) > 0:
@@ -146,7 +152,7 @@ class ImageDialog(QtGui.QMainWindow):
                     if len(name) > 0:
                         datafilename = 'flashcards_' + name + '_' + time.strftime('%Y%m%d_%H%M%S') + '.deck'
                         deckdata = [name, words]
-                        pickle.dump(deckdata, open(datafilename, 'wb'))
+                        pickle.dump(deckdata, open(resource_file(datafilename), 'wb'))
 
         self.get_saved_decks()
         return
@@ -186,7 +192,7 @@ class ImageDialog(QtGui.QMainWindow):
         self.set_card_back(self.remaining_words[0][1])
 
         self.ui.cardProgressBar.setValue(Nwords - len(self.remaining_words))
-        print '{0} left (of {1})'.format(len(self.remaining_words), Nwords)
+        # print '{0} left (of {1})'.format(len(self.remaining_words), Nwords)
         self.ui.cardStack.setCurrentIndex(0)
         return
 
@@ -239,7 +245,7 @@ class ImageDialog(QtGui.QMainWindow):
                 deck_files.append(name)
 
         for deck_file in deck_files:
-            deck = pickle.load(open(deck_file))
+            deck = pickle.load(open(resource_file(deck_file)))
             try:
                 tmp = self.loaded_decks[deck[0]]
             except KeyError:
@@ -250,11 +256,12 @@ class ImageDialog(QtGui.QMainWindow):
 
     def delete_deck_function(self):
         current_deck_name = str(self.ui.loadedDecks.currentText())
-        del_msg = delete_message(current_deck_name)
-        self.confirm_ui.messageLabel.setText(del_msg)
-        retval = self.confirm_ui.exec_()
-        if (retval == 1):
-            self.delete_current_deck()
+        if len(current_deck_name) > 0:
+            del_msg = delete_message(current_deck_name)
+            self.confirm_ui.messageLabel.setText(del_msg)
+            retval = self.confirm_ui.exec_()
+            if (retval == 1):
+                self.delete_current_deck()
         return
 
     def delete_current_deck(self):
@@ -273,12 +280,13 @@ class ImageDialog(QtGui.QMainWindow):
     def stage_current_deck(self):
         preview_length = 50
         current_deck_name = str(self.ui.loadedDecks.currentText())
-        self.ui.previewListWidget.clear()
-        words = self.loaded_decks[current_deck_name]
-        for w in words:
-            textline = '{}: {}'.format(w[0], w[1])
-            self.ui.previewListWidget.addItem(textline[:preview_length])
-        self.staged_deck_name = current_deck_name
+        if len(current_deck_name) > 0:
+            self.ui.previewListWidget.clear()
+            words = self.loaded_decks[current_deck_name]
+            for w in words:
+                textline = '{}: {}'.format(w[0], w[1])
+                self.ui.previewListWidget.addItem(textline[:preview_length])
+            self.staged_deck_name = current_deck_name
         return
 
 app = QtGui.QApplication(sys.argv)

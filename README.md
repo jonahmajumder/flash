@@ -12,6 +12,7 @@ KNOWN BUGS/SHORTCOMINGS TO BE ADDRESSED:
  - better graphic design
  - ability to write ignored comments in text file
  - reverse testing (show definition, require term)
+ - pausing and resuming capabilities
  - done page with stats
  - deck naming box goes blank issue
  - timer

@@ -17,3 +17,5 @@ KNOWN BUGS/SHORTCOMINGS TO BE ADDRESSED:
  - timer
  - support for rich text
  - recognize all dashes as delimiter?
+ - text overflows on sides of card when no spaces present
+ - make it possible (and look good) to go full screen

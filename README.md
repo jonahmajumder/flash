@@ -19,3 +19,4 @@ KNOWN BUGS/SHORTCOMINGS TO BE ADDRESSED:
  - recognize all dashes as delimiter?
  - text overflows on sides of card when no spaces present
  - make it possible (and look good) to go full screen
+ - handle keyboard shortcuts (Q for quit, L for load, etc)

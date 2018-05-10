@@ -21,3 +21,5 @@ KNOWN BUGS/SHORTCOMINGS TO BE ADDRESSED:
  - text overflows on sides of card when no spaces present
  - make it possible (and look good) to go full screen
  - handle keyboard shortcuts (Q for quit, L for load, etc)
+ - print to PDF option, where printable template is generated
+

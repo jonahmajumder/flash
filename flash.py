@@ -1,9 +1,12 @@
+from __future__ import division
+from math import *
 import sys, os
 import pickle
 from random import shuffle
 import time
 from PyQt4 import QtCore, QtGui, uic
 from get_files import get_file_list
+from time import strftime
 
 REPEAT = u'\u21BA'
 CHECK = u'\u2713'
@@ -27,7 +30,7 @@ def delete_message(deck_name):
     return s
 
 def resource_file(filename):
-    filedir = os.path.dirname(__file__)
+    filedir = os.path.dirname(os.path.abspath(__file__))
     p = os.path.join(filedir, filename)
     return p
 
@@ -41,6 +44,7 @@ class ImageDialog(QtGui.QMainWindow):
         # get ui
         self.ui = uic.loadUi(resource_file('flashcards.ui'))
         self.resource_dir = resource_file('.')
+        self.default_dir = os.path.expanduser('~')
         self.loaded_decks = {}
         self.loaded_deck_files = {}
         self.staged_deck_name = None
@@ -49,6 +53,7 @@ class ImageDialog(QtGui.QMainWindow):
         self.word_index = 0
         self.remaining_words = []
 
+        self.load_timer()
         self.load_naming_ui()
         self.load_confirm_ui()
         self.load_message_ui()
@@ -100,6 +105,12 @@ class ImageDialog(QtGui.QMainWindow):
         self.randomize = self.ui.randomCheckBox.isChecked()
         return
 
+    def load_timer(self):
+        self.test_timer = QtCore.QTimer()
+        self.sec_elapsed = 0
+        self.test_timer.timeout.connect(self.update_timer)
+        return
+
     def load_naming_ui(self):
         self.naming_ui = uic.loadUi(resource_file('namemsgbox.ui'))
         self.naming_ui.setWindowTitle('Name Deck')
@@ -139,17 +150,18 @@ class ImageDialog(QtGui.QMainWindow):
     def get_deck_txt_file(self):
         delim = str(self.ui.delimTextEdit.toPlainText())
         delim = delim.strip(' ')
-        default_dir = self.resource_dir
         
         if len(delim) == 0:
             r = self.show_message('No text file delimiter specified.')
             return
         else:
             d = QtGui.QFileDialog
-            filename = d.getOpenFileName(self, 'Open text file', default_dir)
+            filename = str(d.getOpenFileName(self, 'Open text file', self.default_dir))
             if len(filename) > 0:
                 words = parse_file_for_vocab(filename, delim)
                 if len(words) > 0:
+                    print 'filename', filename
+                    self.default_dir = os.path.dirname(os.path.abspath(filename))
                     name = self.get_deck_name()
                     if len(name) > 0:
                         datafilename = 'flashcards_' + name + '_' + time.strftime('%Y%m%d_%H%M%S') + '.deck'
@@ -173,6 +185,18 @@ class ImageDialog(QtGui.QMainWindow):
         self.card_setup()
         return
 
+    def update_timer(self):
+        self.sec_elapsed += 1
+        hrs = int(floor(self.sec_elapsed/3600))
+        mins = int(floor((self.sec_elapsed - 3600*hrs)/60))
+        secs = (self.sec_elapsed - 3600*hrs - mins*60)
+        if (hrs > 0):
+            clock_str = '{0}:{1}:{2}'.format(hrs, str(mins).zfill(2), str(secs).zfill(2))
+        else:
+            clock_str = '{0}:{1}'.format(mins, str(secs).zfill(2))
+        self.ui.timer.setText(clock_str)
+        return
+
     def card_setup(self):
         self.remaining_words = self.loaded_decks[self.staged_deck_name][:]
 
@@ -184,7 +208,8 @@ class ImageDialog(QtGui.QMainWindow):
         return
 
     def reset_clock(self):
-        # empty function, fill it in later with QTimer widget??
+        self.sec_elapsed = 0
+        self.test_timer.start(1000)
         return
 
     def update_card(self):
@@ -224,6 +249,8 @@ class ImageDialog(QtGui.QMainWindow):
         return
 
     def back_to_load(self):
+        self.test_timer.stop()
+        self.sec_elapsed = 0
         self.ui.mainStack.setCurrentIndex(0)
         return
 
@@ -290,6 +317,13 @@ class ImageDialog(QtGui.QMainWindow):
                 self.ui.previewListWidget.addItem(textline[:preview_length])
             self.staged_deck_name = current_deck_name
         return
+
+sys.stdout = open(resource_file('debug_log.txt'), 'a')
+timestamp = strftime('----------  %m/%d/%y %H:%M:%S  ---------')
+print '\n'
+print len(timestamp)*'-'
+print timestamp
+print len(timestamp)*'-'
 
 app = QtGui.QApplication(sys.argv)
 window = ImageDialog()

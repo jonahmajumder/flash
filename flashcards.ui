@@ -60,8 +60,8 @@ background-color: rgb(0, 0, 128);</string>
       </property>
       <property name="maximumSize">
        <size>
-        <width>1000</width>
-        <height>1000</height>
+        <width>16777215</width>
+        <height>16777215</height>
        </size>
       </property>
       <property name="styleSheet">
@@ -955,7 +955,7 @@ color: rgb(0, 0, 0);</string>
              </spacer>
             </item>
             <item>
-             <widget class="QLabel" name="clock">
+             <widget class="QLabel" name="timer">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -996,7 +996,7 @@ background-color: rgb(1, 0, 177);</string>
                <number>3</number>
               </property>
               <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;00:00&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;0:00&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -1032,7 +1032,7 @@ background-color: rgb(1, 0, 177);</string>
              <enum>QFrame::Raised</enum>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="front">
              <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -1395,6 +1395,7 @@ font: bold 24pt &quot;Palatino Linotype&quot;;</string>
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="donePage"/>
      </widget>
     </item>
    </layout>

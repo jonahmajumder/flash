@@ -23,7 +23,7 @@ KNOWN BUGS/SHORTCOMINGS:
  
  [ ] deck naming box goes blank issue
  
- [ ] timer
+ [X] timer
  
  [ ] support for rich text
  

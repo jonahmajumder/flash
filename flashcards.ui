@@ -64,6 +64,12 @@ background-color: rgb(0, 0, 128);</string>
         <height>16777215</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="styleSheet">
        <string notr="true"/>
       </property>
@@ -942,6 +948,42 @@ color: rgb(0, 0, 0);</string>
           <item>
            <layout class="QHBoxLayout" name="timeHLayout">
             <item>
+             <widget class="QLabel" name="progressNumber">
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+                <pointsize>20</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);
+border-color: rgb(204, 204, 204);
+background-color: rgb(0, 0, 0);</string>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::Box</enum>
+              </property>
+              <property name="text">
+               <string>0/0</string>
+              </property>
+              <property name="textFormat">
+               <enum>Qt::AutoText</enum>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="margin">
+               <number>8</number>
+              </property>
+             </widget>
+            </item>
+            <item>
              <spacer name="timeSpacer">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
@@ -954,54 +996,35 @@ color: rgb(0, 0, 0);</string>
               </property>
              </spacer>
             </item>
-            <item>
-             <widget class="QLabel" name="timer">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
+            <item alignment="Qt::AlignHCenter">
+             <widget class="QLCDNumber" name="timer">
               <property name="minimumSize">
                <size>
-                <width>70</width>
-                <height>35</height>
+                <width>80</width>
+                <height>0</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
-                <width>70</width>
-                <height>30</height>
+                <width>16777215</width>
+                <height>40</height>
                </size>
               </property>
-              <property name="font">
-               <font>
-                <pointsize>14</pointsize>
-                <weight>50</weight>
-                <bold>false</bold>
-               </font>
+              <property name="layoutDirection">
+               <enum>Qt::RightToLeft</enum>
               </property>
               <property name="styleSheet">
-               <string notr="true">color: rgb(91, 255, 0);
-border-color: rgb(255, 255, 255);
-background-color: rgb(1, 0, 177);</string>
+               <string notr="true">color: rgb(255, 255, 255);
+border-color: rgb(204, 204, 204);
+background-color: rgb(0, 0, 0);</string>
               </property>
               <property name="frameShape">
                <enum>QFrame::Box</enum>
               </property>
               <property name="frameShadow">
-               <enum>QFrame::Raised</enum>
+               <enum>QFrame::Plain</enum>
               </property>
               <property name="lineWidth">
-               <number>3</number>
-              </property>
-              <property name="text">
-               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;0:00&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-              <property name="margin">
                <number>1</number>
               </property>
              </widget>
@@ -1416,17 +1439,6 @@ font: bold 24pt &quot;Palatino Linotype&quot;;</string>
     <addaction name="actionQuit"/>
    </widget>
    <addaction name="menuFile"/>
-  </widget>
-  <widget class="QToolBar" name="toolBar_2">
-   <property name="windowTitle">
-    <string>toolBar_2</string>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
   </widget>
   <action name="actionFile">
    <property name="text">

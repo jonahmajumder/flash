@@ -107,7 +107,9 @@ class ImageDialog(QtGui.QMainWindow):
 
     def load_timer(self):
         self.test_timer = QtCore.QTimer()
+        self.ui.timer.setSegmentStyle(QtGui.QLCDNumber.Flat)
         self.sec_elapsed = 0
+        self.display_time()
         self.test_timer.timeout.connect(self.update_timer)
         return
 
@@ -187,14 +189,19 @@ class ImageDialog(QtGui.QMainWindow):
 
     def update_timer(self):
         self.sec_elapsed += 1
+        self.display_time()
+        return
+
+    def display_time(self):
+        sep = ' ' if (self.sec_elapsed%2) else ':'
         hrs = int(floor(self.sec_elapsed/3600))
         mins = int(floor((self.sec_elapsed - 3600*hrs)/60))
         secs = (self.sec_elapsed - 3600*hrs - mins*60)
         if (hrs > 0):
-            clock_str = '{0}:{1}:{2}'.format(hrs, str(mins).zfill(2), str(secs).zfill(2))
+            clock_str = '{0}{1}{2}{3}{4}'.format(hrs, sep, str(mins).zfill(2), sep, str(secs).zfill(2))
         else:
-            clock_str = '{0}:{1}'.format(mins, str(secs).zfill(2))
-        self.ui.timer.setText(clock_str)
+            clock_str = '{0}{1}{2}'.format(mins, sep, str(secs).zfill(2))
+        self.ui.timer.display(QtCore.QString(clock_str))
         return
 
     def card_setup(self):
@@ -218,7 +225,9 @@ class ImageDialog(QtGui.QMainWindow):
         self.set_card_front(self.remaining_words[0][0])
         self.set_card_back(self.remaining_words[0][1])
 
-        self.ui.cardProgressBar.setValue(Nwords - len(self.remaining_words))
+        words_done = Nwords - len(self.remaining_words)
+        self.ui.cardProgressBar.setValue(words_done)
+        self.ui.progressNumber.setText(' {0} / {1} '.format(words_done, Nwords))
         # print '{0} left (of {1})'.format(len(self.remaining_words), Nwords)
         self.ui.cardStack.setCurrentIndex(0)
         return
@@ -251,6 +260,7 @@ class ImageDialog(QtGui.QMainWindow):
     def back_to_load(self):
         self.test_timer.stop()
         self.sec_elapsed = 0
+        self.display_time()
         self.ui.mainStack.setCurrentIndex(0)
         return
 

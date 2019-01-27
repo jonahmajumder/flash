@@ -7,25 +7,25 @@ Below is a screenshot of the load screen.
 ![Load Screen](screenshots/loadscreen_preview.png)
 
 The major components of the project are:
-* Qt UI files (created and edited in the "Qt Creator" desktop application)
+* Qt UI files (created and edited in the "[Qt Creator](https://wiki.qt.io/Qt_Creator)" desktop application)
 * Python code to reference/modify UI elements and run the application
 * The [py2app](https://py2app.readthedocs.io/en/latest/#) utility, allowing for bundling of python code into standalone Mac apps
 
 ## FEATURES AND IMPROVEMENTS I HOPE TO IMPLEMENT
--[ ] better graphic design
--[ ] ability to write ignored comments in text file
--[X] reverse testing (show definition, require term)
--[ ] pausing and resuming capabilities, while testing
--[ ] done page with stats
--[X] timer
--[ ] support for rich text
--[ ] make full screen mode look good
--[ ] handle keyboard shortcuts (Q for quit, L for load, etc)
--[ ] print to PDF option, where printable template is generated
+- [ ] better graphic design
+- [ ] ability to write ignored comments in text file
+- [X] reverse testing (show definition, require term)
+- [ ] pausing and resuming capabilities, while testing
+- [ ] done page with stats
+- [X] timer
+- [ ] support for rich text
+- [ ] make full screen mode look good
+- [ ] handle keyboard shortcuts (Q for quit, L for load, etc)
+- [ ] print to PDF option, where printable template is generated
 
 ## KNOWN BUGS
--[X] directory issues with pressing "import"
--[X] deck naming box goes blank issue (multiline issue)
--[ ] recognize all dashes as delimiter?
--[ ] text overflows on sides of card when no spaces present
+- [X] directory issues with pressing "import"
+- [X] deck naming box goes blank issue (multiline issue)
+- [ ] recognize all dashes as delimiter?
+- [ ] text overflows on sides of card when no spaces present
 

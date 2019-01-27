@@ -44,8 +44,7 @@ class ImageDialog(QtWidgets.QMainWindow):
         # get ui
         self.ui = uic.loadUi(resource_file('flashcards.ui'))
         self.resource_dir = resource_file('.')
-        # default dir is the one current file is in
-        self.default_dir = os.path.join(*os.path.realpath(__file__).split(os.path.sep)[:-1])
+        self.default_dir = os.path.expanduser('~')
         self.loaded_decks = {}
         self.loaded_deck_files = {}
         self.staged_deck_name = None
@@ -71,7 +70,7 @@ class ImageDialog(QtWidgets.QMainWindow):
     def ready_ui(self):
         self.ui.setWindowTitle('Flash')
         self.connect_buttons()
-        self.ui.delimTextEdit.setText('-')
+        self.ui.delimLineEdit.setText('-')
         self.get_saved_decks()
         self.evaluate_randomize()
         self.evaluate_repetition()
@@ -201,7 +200,7 @@ class ImageDialog(QtWidgets.QMainWindow):
     # ---------- active functions ----------
 
     def get_deck_txt_file(self):
-        delim = str(self.ui.delimTextEdit.toPlainText())
+        delim = str(self.ui.delimLineEdit.text())
         delim = delim.strip(' ')
         
         if len(delim) == 0:

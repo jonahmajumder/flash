@@ -21,19 +21,20 @@ The major components of the project are:
 - [X] timer
 - [ ] support for rich text (making conversion to app-friendly txt file easier)
 - [ ] make full screen mode look good
-- [ ] handle keyboard shortcuts (Q for quit, L for load, etc)
+- [X] handle keyboard shortcuts (Q for quit, L for load, etc)
 - [ ] print to PDF option, where printable template is generated
 
 ## KNOWN BUGS
-- [X] directory issues with pressing "import"
-- [X] deck naming box goes blank issue (multiline issue)
-- [ ] deck names obscured in choice combo box 
+- [ ] directory issues with pressing "import"-- where should it land you??
+- [X] deck naming box "goes blank" issue (multiline issue)
+- [X] deck names obscured in choice combo box (was related to multiline issue)
 - [ ] recognize all dashes as delimiter?
 - [ ] text overflows on sides of card when no spaces present
+- [ ] flashcard text size should be based on whether it is a word or definition, not "front" or "back"
 
 ### Dependencies:
 
-I use a designated Anaconda virtual environment to build and run this program. The following is the result of a `condo list` command, displaying installed nonstandard packages:
+I use a designated Anaconda virtual environment to build and run this program. The following is the result of a `conda list` command, displaying installed nonstandard packages:
 
 <img src="screenshots/conda_list.png" width="400">
 

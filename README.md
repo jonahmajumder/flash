@@ -1,9 +1,13 @@
 Flash (Flashcard Viewing Application)
 ------------------------------------
 
-A basic flashcard application built on PyQt4 and Python 2.7.
+A basic flashcard application built with the Qt Design Framework and Python. Recently upgraded to Python 3.6 and Qt5.
 
-Nonstandard dependencies: PyQt4, PySide
+Below is a screenshot of the load screen. Design is a work in progress.
+
+![Load Screen](screenshots/loadscreen_preview.png)
+
+The overall 
 
 package: a bash script to build script and UIs into mac application
 

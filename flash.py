@@ -44,7 +44,8 @@ class ImageDialog(QtWidgets.QMainWindow):
         # get ui
         self.ui = uic.loadUi(resource_file('flashcards.ui'))
         self.resource_dir = resource_file('.')
-        self.default_dir = os.path.expanduser('~')
+        # default dir is the one current file is in
+        self.default_dir = os.path.join(*os.path.realpath(__file__).split(os.path.sep)[:-1])
         self.loaded_decks = {}
         self.loaded_deck_files = {}
         self.staged_deck_name = None
@@ -173,10 +174,10 @@ class ImageDialog(QtWidgets.QMainWindow):
     # ---------- user input functions ----------
 
     def get_deck_name(self):
-        self.naming_ui.nameTextEdit.setPlainText('')
+        self.naming_ui.nameLineEdit.setPlaceholderText('Deck Name')
         retval = self.naming_ui.exec_()
-        entered_name = str(self.naming_ui.nameTextEdit.toPlainText())
-        self.naming_ui.nameTextEdit.setPlainText('')
+        entered_name = str(self.naming_ui.nameLineEdit.text())
+        self.naming_ui.nameLineEdit.setText('')
         if (retval == 1):
             return entered_name
         else:

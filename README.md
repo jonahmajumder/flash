@@ -33,11 +33,13 @@ The major components of the project are:
 ### Dependencies:
 
 I use a designated Anaconda virtual environment to build and this program. The following is the result of a `condo list` command, displaying installed nonstandard packages:
-<img src="screenshots/conda_list.png" width="300">
+
+<img src="screenshots/conda_list.png" width="400">
 
 But installation of all of these packages was the result of just 3 conda (or pip) `install` commands:
 * pip
 * pyqt5
 * py2app
 * sip
+
 And anaconda should handle the identification and installation of everything else.

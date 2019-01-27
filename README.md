@@ -17,9 +17,9 @@ The major components of the project are:
 - [ ] pictures associated with vocab, and the ability to prompt with them
 - [X] reverse testing (show definition, require term)
 - [ ] pausing and resuming capabilities, while testing
-- [ ] done page with stats
+- [ ] done page with stats, maybe saved results?
 - [X] timer
-- [ ] support for rich text
+- [ ] support for rich text (making conversion to app-friendly txt file easier)
 - [ ] make full screen mode look good
 - [ ] handle keyboard shortcuts (Q for quit, L for load, etc)
 - [ ] print to PDF option, where printable template is generated
@@ -27,12 +27,13 @@ The major components of the project are:
 ## KNOWN BUGS
 - [X] directory issues with pressing "import"
 - [X] deck naming box goes blank issue (multiline issue)
+- [ ] deck names obscured in choice combo box 
 - [ ] recognize all dashes as delimiter?
 - [ ] text overflows on sides of card when no spaces present
 
 ### Dependencies:
 
-I use a designated Anaconda virtual environment to build and this program. The following is the result of a `condo list` command, displaying installed nonstandard packages:
+I use a designated Anaconda virtual environment to build and run this program. The following is the result of a `condo list` command, displaying installed nonstandard packages:
 
 <img src="screenshots/conda_list.png" width="400">
 

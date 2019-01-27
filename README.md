@@ -2,9 +2,9 @@
 
 A basic macOS flashcard application built with the Qt Design Framework and Python. The application allows the user to select text files containing vocabulary words/phrases and associated definitions. This file is parsed, and the application allows for user-friendly self-testing and organization of flashcard "decks." Project was recently upgraded to Python 3.6 and Qt5.
 
-Below is a screenshot of the load screen.
+Here is what the "load screen" currently looks like.
 
-![Load Screen](screenshots/loadscreen_preview.png)
+![Load Screen](screenshots/loadscreen_preview.png | width=600)
 
 The major components of the project are:
 * Qt UI files (created and edited in the "[Qt Creator](https://wiki.qt.io/Qt_Creator)" desktop application)
@@ -14,6 +14,7 @@ The major components of the project are:
 ## FEATURES AND IMPROVEMENTS I HOPE TO IMPLEMENT
 - [ ] better graphic design
 - [ ] ability to write ignored comments in text file
+- [ ] pictures associated with vocab, and the ability to prompt with them
 - [X] reverse testing (show definition, require term)
 - [ ] pausing and resuming capabilities, while testing
 - [ ] done page with stats
@@ -29,3 +30,15 @@ The major components of the project are:
 - [ ] recognize all dashes as delimiter?
 - [ ] text overflows on sides of card when no spaces present
 
+### Dependencies:
+
+I use a designated Anaconda virtual environment to build and this program. The following is the result of a `condo list` command, displaying installed nonstandard packages:
+![Conda List Output](screenshots/conda_list.png | width=300)
+
+Installation of these packages was the result of just 3 pip/conda `install`s:
+(* pip)
+* pyqt5
+* py2app
+* sip
+
+Anaconda should handle the identification and installation of everything else.

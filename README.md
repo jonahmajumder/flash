@@ -4,7 +4,7 @@ A basic macOS flashcard application built with the Qt Design Framework and Pytho
 
 Here is what the "load screen" currently looks like.
 
-![Load Screen](screenshots/loadscreen_preview.png | width=600)
+![Load Screen](screenshots/loadscreen_preview.png){:width="600px"}
 
 The major components of the project are:
 * Qt UI files (created and edited in the "[Qt Creator](https://wiki.qt.io/Qt_Creator)" desktop application)
@@ -33,10 +33,10 @@ The major components of the project are:
 ### Dependencies:
 
 I use a designated Anaconda virtual environment to build and this program. The following is the result of a `condo list` command, displaying installed nonstandard packages:
-![Conda List Output](screenshots/conda_list.png | width=300)
+![Conda List Output](screenshots/conda_list.png){:width="300px"}
 
-Installation of these packages was the result of just 3 pip/conda `install`s:
-(* pip)
+Installation of these packages was the result of just 3 conda (or pip) `install` commands:
+* pip
 * pyqt5
 * py2app
 * sip

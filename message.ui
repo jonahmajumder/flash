@@ -20,8 +20,8 @@
       <widget class="QLabel" name="messageLabel">
        <property name="font">
         <font>
-         <family>Adobe Arabic</family>
-         <pointsize>24</pointsize>
+         <family>Verdana</family>
+         <pointsize>20</pointsize>
         </font>
        </property>
        <property name="text">
@@ -49,6 +49,12 @@
        </item>
        <item>
         <widget class="QPushButton" name="okButton">
+         <property name="font">
+          <font>
+           <family>Verdana</family>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
          <property name="text">
           <string>OK</string>
          </property>

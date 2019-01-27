@@ -15,4 +15,4 @@ def get_file_list(cwd, files=[], exclude=[]):
     return file_list
 
 if __name__ == '__main__':
-    print get_files(cwd, [])
+    print(get_files(cwd, []))

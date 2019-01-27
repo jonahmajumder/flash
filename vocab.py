@@ -39,7 +39,7 @@ def main():
         f = open(filename, 'r')
         f.close()
     except IOError:
-        print 'Specified text file does not exist.'
+        print('Specified text file does not exist.')
         return
 
     words = parse_file_for_vocab(filename)

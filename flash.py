@@ -4,7 +4,7 @@ import sys, os
 import pickle
 from random import shuffle
 import time
-from PyQt4 import QtCore, QtGui, uic
+from PyQt5 import QtCore, QtWidgets, uic
 from get_files import get_file_list
 from time import strftime
 
@@ -34,12 +34,12 @@ def resource_file(filename):
     p = os.path.join(filedir, filename)
     return p
 
-class ImageDialog(QtGui.QMainWindow):
+class ImageDialog(QtWidgets.QMainWindow):
 
     # ---------- init function ----------
 
     def __init__(self):
-        QtGui.QDialog.__init__(self)
+        QtWidgets.QDialog.__init__(self)
 
         # get ui
         self.ui = uic.loadUi(resource_file('flashcards.ui'))
@@ -48,16 +48,22 @@ class ImageDialog(QtGui.QMainWindow):
         self.loaded_decks = {}
         self.loaded_deck_files = {}
         self.staged_deck_name = None
+        self.testing_deck_name = None
+        self.prompt_word = True
         self.repeat_until_done = True
         self.randomize = True
+        self.test_in_progress = False
+        self.ui.resumeButton.setEnabled(False)
         self.word_index = 0
         self.remaining_words = []
 
         self.load_timer()
         self.load_naming_ui()
         self.load_confirm_ui()
+        # self.load_resume_ui()
         self.load_message_ui()
         self.ready_ui()
+
 
     # ---------- gui preparation (and start) function ----------
 
@@ -69,6 +75,9 @@ class ImageDialog(QtGui.QMainWindow):
         self.evaluate_randomize()
         self.evaluate_repetition()
 
+        self.ui.actionQuit.triggered.connect(self.warn_before_quitting)
+        self.ui.actionLoad.triggered.connect(self.get_deck_txt_file)
+        self.ui.actionStart.triggered.connect(self.start_testing)
         # when everything is ready
         self.ui.mainStack.setCurrentIndex(0)
         self.ui.show()
@@ -78,17 +87,27 @@ class ImageDialog(QtGui.QMainWindow):
     # ---------- auxiliary prep functions ----------
 
     def connect_buttons(self):
+
+
         self.ui.startButton.clicked.connect(self.start_testing)
+        self.ui.resumeButton.clicked.connect(self.resume_testing)
         self.ui.backButton.clicked.connect(self.back_to_load)
         self.ui.flipButton.clicked.connect(self.flip_card)
         self.ui.importButton.clicked.connect(self.get_deck_txt_file)
+        self.ui.renameButton.clicked.connect(self.rename_current_deck)
         self.ui.deleteButton.clicked.connect(self.delete_deck_function)
         self.ui.stageButton.clicked.connect(self.stage_current_deck)
         self.ui.randomCheckBox.clicked.connect(self.evaluate_randomize)
         self.ui.onceButton.clicked.connect(self.evaluate_repetition)
         self.ui.untilDoneButton.clicked.connect(self.evaluate_repetition)
+        self.ui.promptWord.clicked.connect(self.evaluate_prompt)
+        self.ui.promptDef.clicked.connect(self.evaluate_prompt)
         self.ui.correctButton.clicked.connect(lambda: self.next_word(True))
         self.ui.incorrectButton.clicked.connect(lambda: self.next_word(False))
+        return
+
+    def evaluate_prompt(self):
+        self.prompt_word = self.ui.promptWord.isChecked()
         return
 
     def evaluate_repetition(self):
@@ -107,7 +126,7 @@ class ImageDialog(QtGui.QMainWindow):
 
     def load_timer(self):
         self.test_timer = QtCore.QTimer()
-        self.ui.timer.setSegmentStyle(QtGui.QLCDNumber.Flat)
+        self.ui.timer.setSegmentStyle(QtWidgets.QLCDNumber.Flat)
         self.sec_elapsed = 0
         self.display_time()
         self.test_timer.timeout.connect(self.update_timer)
@@ -116,14 +135,34 @@ class ImageDialog(QtGui.QMainWindow):
     def load_naming_ui(self):
         self.naming_ui = uic.loadUi(resource_file('namemsgbox.ui'))
         self.naming_ui.setWindowTitle('Name Deck')
-        self.naming_ui.buttonDialog.setStandardButtons(QtGui.QDialogButtonBox.Cancel | QtGui.QDialogButtonBox.Ok)
+        self.naming_ui.buttonDialog.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel | QtWidgets.QDialogButtonBox.Ok)
+        return
+
+    def load_command_ui(self):
+        self.command_ui = uic.loadUi(resource_file('command.ui'))
+        self.command_ui.setWindowTitle('Command')
+        self.command_ui.go.clicked.connect(self.run_command)
+        self.command_ui.buttonDialog.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel | QtWidgets.QDialogButtonBox.Ok)
+        return
+
+    def run_command(self):
+        cmdstr = str(self.command_ui.command.toPlainText())
+        eval(cmdstr)
         return
 
     def load_confirm_ui(self):
         self.confirm_ui = uic.loadUi(resource_file('confirmdelete.ui'))
         self.confirm_ui.setWindowTitle('Confirm Delete')
-        self.confirm_ui.buttonDialog.setStandardButtons(QtGui.QDialogButtonBox.Cancel | QtGui.QDialogButtonBox.Ok)
+        self.confirm_ui.buttonDialog.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel | QtWidgets.QDialogButtonBox.Ok)
         return
+
+    # def load_resume_ui(self):
+    #     self.resume_ui = uic.loadUi(resource_file('resumerestart.ui'))
+    #     self.resume_ui.setWindowTitle('Test in Progress!')
+    #     self.resume_ui.cancel.clicked.connect(lambda: self.resume_ui.done(-1))
+    #     self.resume_ui.resume.clicked.connect(lambda: self.resume_ui.done(0))
+    #     self.resume_ui.restart.clicked.connect(lambda: self.resume_ui.done(1))
+    #     return
 
     def load_message_ui(self):
         self.message_ui = uic.loadUi(resource_file('message.ui'))
@@ -134,6 +173,7 @@ class ImageDialog(QtGui.QMainWindow):
     # ---------- user input functions ----------
 
     def get_deck_name(self):
+        self.naming_ui.nameTextEdit.setPlainText('')
         retval = self.naming_ui.exec_()
         entered_name = str(self.naming_ui.nameTextEdit.toPlainText())
         self.naming_ui.nameTextEdit.setPlainText('')
@@ -147,6 +187,16 @@ class ImageDialog(QtGui.QMainWindow):
         retval = self.message_ui.exec_()
         return retval
 
+    def warn_before_quitting(self):
+        self.confirm_ui.setWindowTitle('Confirm Quit')
+        self.confirm_ui.messageLabel.setText('Are you sure you want to quit?')     
+        retval = self.confirm_ui.exec_()
+        if (retval == 1):
+            sys.exit()
+        else:
+            self.confirm_ui.setWindowTitle('Confirm Delete')
+
+
     # ---------- active functions ----------
 
     def get_deck_txt_file(self):
@@ -157,12 +207,13 @@ class ImageDialog(QtGui.QMainWindow):
             r = self.show_message('No text file delimiter specified.')
             return
         else:
-            d = QtGui.QFileDialog
-            filename = str(d.getOpenFileName(self, 'Open text file', self.default_dir))
+            d = QtWidgets.QFileDialog
+            filename, _ = d.getOpenFileName(self, 'Open text file', self.default_dir, 'Text Files (*.txt)')
+            # print(filename)
             if len(filename) > 0:
                 words = parse_file_for_vocab(filename, delim)
                 if len(words) > 0:
-                    print 'filename', filename
+                    # print('filename', filename)
                     self.default_dir = os.path.dirname(os.path.abspath(filename))
                     name = self.get_deck_name()
                     if len(name) > 0:
@@ -173,18 +224,37 @@ class ImageDialog(QtGui.QMainWindow):
         self.get_saved_decks()
         return
 
+
     def start_testing(self):
         if (self.staged_deck_name == None):
             r = self.show_message('No deck in preview window.')
             return
-        self.ui.mainStack.setCurrentIndex(1)
+        else:
+            self.ui.cardProgressBar.setMinimum(0)
+            self.ui.cardProgressBar.setMaximum(len(self.loaded_decks[self.staged_deck_name]))
+            self.ui.cardProgressBar.reset()
 
-        self.ui.cardProgressBar.setMinimum(0)
-        self.ui.cardProgressBar.setMaximum(len(self.loaded_decks[self.staged_deck_name]))
-        self.ui.cardProgressBar.reset()
+            self.reset_clock()
+            self.card_setup()
+            self.testing_deck_name = self.staged_deck_name
+            self.test_in_progress = True
+            self.ui.mainStack.setCurrentIndex(1)
+        return
 
-        self.reset_clock()
-        self.card_setup()
+    def assess_resume(self):
+        if self.test_in_progress:
+            self.ui.resumeButton.setEnabled(True)
+        else:
+            self.ui.resumeButton.setEnabled(False)
+        return
+
+    def resume_testing(self):
+        if not self.test_in_progress:
+            raise Exception
+        else:
+            self.update_card()
+            self.test_timer.start(1000)
+            self.ui.mainStack.setCurrentIndex(1)
         return
 
     def update_timer(self):
@@ -201,7 +271,7 @@ class ImageDialog(QtGui.QMainWindow):
             clock_str = '{0}{1}{2}{3}{4}'.format(hrs, sep, str(mins).zfill(2), sep, str(secs).zfill(2))
         else:
             clock_str = '{0}{1}{2}'.format(mins, sep, str(secs).zfill(2))
-        self.ui.timer.display(QtCore.QString(clock_str))
+        self.ui.timer.display(clock_str)
         return
 
     def card_setup(self):
@@ -216,19 +286,27 @@ class ImageDialog(QtGui.QMainWindow):
 
     def reset_clock(self):
         self.sec_elapsed = 0
+        self.display_time()
         self.test_timer.start(1000)
         return
 
     def update_card(self):
         Nwords = len(self.loaded_decks[self.staged_deck_name])
 
-        self.set_card_front(self.remaining_words[0][0])
-        self.set_card_back(self.remaining_words[0][1])
+        if self.prompt_word:
+            front = self.remaining_words[0][0]
+            back = self.remaining_words[0][1]
+        else:
+            front = self.remaining_words[0][1]
+            back = self.remaining_words[0][0]
+
+        self.set_card_front(front)
+        self.set_card_back(back)
 
         words_done = Nwords - len(self.remaining_words)
         self.ui.cardProgressBar.setValue(words_done)
         self.ui.progressNumber.setText(' {0} / {1} '.format(words_done, Nwords))
-        # print '{0} left (of {1})'.format(len(self.remaining_words), Nwords)
+        # print('{0} left (of {1})'.format(len(self.remaining_words), Nwords))
         self.ui.cardStack.setCurrentIndex(0)
         return
 
@@ -259,8 +337,8 @@ class ImageDialog(QtGui.QMainWindow):
 
     def back_to_load(self):
         self.test_timer.stop()
-        self.sec_elapsed = 0
         self.display_time()
+        self.assess_resume()
         self.ui.mainStack.setCurrentIndex(0)
         return
 
@@ -268,10 +346,18 @@ class ImageDialog(QtGui.QMainWindow):
         self.ui.cardStack.setCurrentIndex(1)
         return
 
+    def generate_stats(self):
+        s = ''
+        s += self.testing_deck_name + '\n'
+
+        return s
+
     def done_function(self):
-        self.ui.cardProgressBar.setValue(Nwords)
-        r = self.show_message('Finished deck!')
-        self.back_to_load()
+        self.test_in_progress = False
+        statStr = self.generate_stats()
+        self.testing_deck_name = None
+        self.ui.statsLabel.setText(s)
+        self.ui.cardStack.setCurrentIndex(2)
         return
 
     # ---------- deck save/load/delete functions ----------
@@ -284,7 +370,7 @@ class ImageDialog(QtGui.QMainWindow):
                 deck_files.append(name)
 
         for deck_file in deck_files:
-            deck = pickle.load(open(resource_file(deck_file)))
+            deck = pickle.load(open(resource_file(deck_file), 'rb'))
             try:
                 tmp = self.loaded_decks[deck[0]]
             except KeyError:
@@ -292,6 +378,30 @@ class ImageDialog(QtGui.QMainWindow):
                 self.loaded_deck_files[deck[0]] = deck_file
                 self.ui.loadedDecks.addItem(deck[0])
         return
+
+    def rename_current_deck(self):
+        current_deck_name = str(self.ui.loadedDecks.currentText())
+        deck_index = self.ui.loadedDecks.currentIndex()
+
+        new_name = self.get_deck_name()
+        if len(new_name) > 0:
+
+            self.loaded_decks[new_name] = self.loaded_decks.pop(current_deck_name)
+
+            newdatafilename = 'flashcards_' + new_name + '_' + time.strftime('%Y%m%d_%H%M%S') + '.deck'
+            os.remove(self.loaded_deck_files[current_deck_name])
+            self.loaded_deck_files.pop(current_deck_name)
+            self.loaded_deck_files[new_name] = newdatafilename
+
+            deckdata = [new_name, self.loaded_decks[new_name]]
+            pickle.dump(deckdata, open(resource_file(newdatafilename), 'wb'))
+
+            self.ui.loadedDecks.setItemText(deck_index, new_name)
+
+            if (current_deck_name == self.staged_deck_name):
+                self.staged_deck_name = new_name
+
+            return
 
     def delete_deck_function(self):
         current_deck_name = str(self.ui.loadedDecks.currentText())
@@ -314,6 +424,9 @@ class ImageDialog(QtGui.QMainWindow):
         if (current_deck_name == self.staged_deck_name):
             self.ui.previewListWidget.clear()
             self.staged_deck_name = None
+        if (current_deck_name == self.testing_deck_name):
+            self.test_in_progress = False
+            self.assess_resume()
         return
 
     def stage_current_deck(self):
@@ -328,13 +441,13 @@ class ImageDialog(QtGui.QMainWindow):
             self.staged_deck_name = current_deck_name
         return
 
-sys.stdout = open(resource_file('debug_log.txt'), 'a')
-timestamp = strftime('----------  %m/%d/%y %H:%M:%S  ---------')
-print '\n'
-print len(timestamp)*'-'
-print timestamp
-print len(timestamp)*'-'
+# sys.stdout = open(resource_file('debug_log.txt'), 'a')
+# timestamp = strftime('----------  %m/%d/%y %H:%M:%S  ---------')
+# print('\n')
+# print(len(timestamp)*'-')
+# print(timestamp)
+# print(len(timestamp)*'-')
 
-app = QtGui.QApplication(sys.argv)
+app = QtWidgets.QApplication(sys.argv)
 window = ImageDialog()
 sys.exit(app.exec_())

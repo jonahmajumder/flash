@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>624</width>
-    <height>499</height>
+    <width>732</width>
+    <height>601</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -18,8 +18,8 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>1000</width>
-    <height>600</height>
+    <width>16777215</width>
+    <height>16777215</height>
    </size>
   </property>
   <property name="font">
@@ -33,8 +33,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">color: rgb(204, 204, 204);
-background-color: rgb(0, 0, 128);</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="autoFillBackground">
@@ -66,6 +65,7 @@ background-color: rgb(0, 0, 128);</string>
       </property>
       <property name="font">
        <font>
+        <family>Verdana</family>
         <weight>50</weight>
         <bold>false</bold>
        </font>
@@ -77,7 +77,7 @@ background-color: rgb(0, 0, 128);</string>
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="loadPage">
        <property name="sizePolicy">
@@ -96,6 +96,11 @@ background-color: rgb(0, 0, 128);</string>
          <layout class="QHBoxLayout" name="titleHLayout">
           <item>
            <spacer name="titleHSpacer1">
+            <property name="font">
+             <font>
+              <family>Verdana</family>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -117,7 +122,7 @@ background-color: rgb(0, 0, 128);</string>
             </property>
             <property name="font">
              <font>
-              <family>Century</family>
+              <family>Verdana</family>
               <pointsize>30</pointsize>
              </font>
             </property>
@@ -125,7 +130,7 @@ background-color: rgb(0, 0, 128);</string>
              <string notr="true"/>
             </property>
             <property name="text">
-             <string>Flashcard Manager</string>
+             <string>Flash</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -137,6 +142,11 @@ background-color: rgb(0, 0, 128);</string>
           </item>
           <item>
            <spacer name="titleHSpacer2">
+            <property name="font">
+             <font>
+              <family>Verdana</family>
+             </font>
+            </property>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -151,25 +161,6 @@ background-color: rgb(0, 0, 128);</string>
          </layout>
         </item>
         <item>
-         <widget class="Line" name="upperHLine">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>3</height>
-           </size>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Plain</enum>
-          </property>
-          <property name="lineWidth">
-           <number>2</number>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
          <widget class="QFrame" name="loadHFrame">
           <property name="minimumSize">
            <size>
@@ -182,6 +173,11 @@ background-color: rgb(0, 0, 128);</string>
             <width>16777215</width>
             <height>250</height>
            </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Verdana</family>
+           </font>
           </property>
           <property name="styleSheet">
            <string notr="true"/>
@@ -198,11 +194,16 @@ background-color: rgb(0, 0, 128);</string>
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
             <spacer name="loadFarLSpacer">
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+              </font>
+             </property>
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
              <property name="sizeType">
-              <enum>QSizePolicy::Fixed</enum>
+              <enum>QSizePolicy::Expanding</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -212,7 +213,7 @@ background-color: rgb(0, 0, 128);</string>
              </property>
             </spacer>
            </item>
-           <item>
+           <item alignment="Qt::AlignLeft">
             <widget class="QFrame" name="importFrame">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -232,6 +233,11 @@ background-color: rgb(0, 0, 128);</string>
                <height>16777215</height>
               </size>
              </property>
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+              </font>
+             </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
@@ -250,6 +256,11 @@ background-color: rgb(0, 0, 128);</string>
               </property>
               <item>
                <spacer name="importVSpacer1">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                 </font>
+                </property>
                 <property name="orientation">
                  <enum>Qt::Vertical</enum>
                 </property>
@@ -265,7 +276,7 @@ background-color: rgb(0, 0, 128);</string>
                <widget class="QLabel" name="importLabel">
                 <property name="font">
                  <font>
-                  <family>Century</family>
+                  <family>Verdana</family>
                   <pointsize>14</pointsize>
                  </font>
                 </property>
@@ -284,13 +295,12 @@ background-color: rgb(0, 0, 128);</string>
                <widget class="QPushButton" name="importButton">
                 <property name="font">
                  <font>
-                  <family>Century</family>
-                  <pointsize>12</pointsize>
+                  <family>Verdana</family>
+                  <pointsize>11</pointsize>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">background-color: rgb(204, 204, 204);
-color: rgb(0, 0, 0);</string>
+                 <string notr="true"/>
                 </property>
                 <property name="text">
                  <string>Select File</string>
@@ -309,7 +319,7 @@ color: rgb(0, 0, 0);</string>
                   </property>
                   <property name="font">
                    <font>
-                    <family>Century</family>
+                    <family>Verdana</family>
                     <pointsize>12</pointsize>
                    </font>
                   </property>
@@ -323,6 +333,11 @@ color: rgb(0, 0, 0);</string>
                 </item>
                 <item>
                  <spacer name="delimSpacer">
+                  <property name="font">
+                   <font>
+                    <family>Verdana</family>
+                   </font>
+                  </property>
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
                   </property>
@@ -350,10 +365,10 @@ color: rgb(0, 0, 0);</string>
                   </property>
                   <property name="font">
                    <font>
-                    <family>Century</family>
+                    <family>Verdana</family>
                     <pointsize>14</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
+                    <weight>50</weight>
+                    <bold>false</bold>
                    </font>
                   </property>
                   <property name="autoFillBackground">
@@ -384,6 +399,11 @@ color: rgb(0, 0, 0);</string>
               </item>
               <item>
                <spacer name="importVSpacer2">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                 </font>
+                </property>
                 <property name="orientation">
                  <enum>Qt::Vertical</enum>
                 </property>
@@ -400,6 +420,11 @@ color: rgb(0, 0, 0);</string>
            </item>
            <item>
             <spacer name="loadLSpacer">
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+              </font>
+             </property>
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
@@ -415,7 +440,7 @@ color: rgb(0, 0, 0);</string>
             <widget class="QFrame" name="loadFrame">
              <property name="minimumSize">
               <size>
-               <width>150</width>
+               <width>160</width>
                <height>0</height>
               </size>
              </property>
@@ -425,27 +450,25 @@ color: rgb(0, 0, 0);</string>
                <height>16777215</height>
               </size>
              </property>
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+              </font>
+             </property>
              <property name="styleSheet">
               <string notr="true">border-color: rgb(0, 0, 0);</string>
              </property>
              <property name="frameShape">
               <enum>QFrame::NoFrame</enum>
              </property>
-             <layout class="QVBoxLayout" name="verticalLayout_10">
-              <property name="leftMargin">
-               <number>0</number>
-              </property>
-              <property name="topMargin">
-               <number>0</number>
-              </property>
-              <property name="rightMargin">
-               <number>0</number>
-              </property>
-              <property name="bottomMargin">
-               <number>0</number>
-              </property>
+             <layout class="QVBoxLayout" name="verticalLayout_7">
               <item>
                <spacer name="loadVSpacer1">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                 </font>
+                </property>
                 <property name="orientation">
                  <enum>Qt::Vertical</enum>
                 </property>
@@ -461,7 +484,7 @@ color: rgb(0, 0, 0);</string>
                <widget class="QLabel" name="loadedLabel">
                 <property name="font">
                  <font>
-                  <family>Century</family>
+                  <family>Verdana</family>
                   <pointsize>14</pointsize>
                  </font>
                 </property>
@@ -480,14 +503,12 @@ color: rgb(0, 0, 0);</string>
                <widget class="QComboBox" name="loadedDecks">
                 <property name="font">
                  <font>
-                  <family>Century</family>
-                  <pointsize>12</pointsize>
+                  <family>Verdana</family>
+                  <pointsize>11</pointsize>
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">color: rgb(0, 0, 0);
-selection-background-color: rgb(191, 191, 191);
-background-color: rgb(255, 255, 255);</string>
+                 <string notr="true"/>
                 </property>
                 <property name="currentIndex">
                  <number>-1</number>
@@ -504,41 +525,90 @@ background-color: rgb(255, 255, 255);</string>
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="stageButton">
-                <property name="font">
-                 <font>
-                  <family>Century</family>
-                  <pointsize>12</pointsize>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">background-color: rgb(204, 204, 204);
-color: rgb(0, 0, 0);</string>
-                </property>
-                <property name="text">
-                 <string>Preview →</string>
-                </property>
-               </widget>
+               <layout class="QHBoxLayout" name="horizontalLayout_12">
+                <item>
+                 <widget class="QPushButton" name="stageButton">
+                  <property name="font">
+                   <font>
+                    <family>Verdana</family>
+                    <pointsize>11</pointsize>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="text">
+                   <string>Preview →</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
               <item>
-               <widget class="QPushButton" name="deleteButton">
-                <property name="font">
-                 <font>
-                  <family>Century</family>
-                  <pointsize>12</pointsize>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">background-color: rgb(204, 204, 204);
-color: rgb(0, 0, 0);</string>
-                </property>
-                <property name="text">
-                 <string>Delete</string>
-                </property>
-               </widget>
+               <layout class="QHBoxLayout" name="horizontalLayout_7">
+                <item>
+                 <widget class="QPushButton" name="renameButton">
+                  <property name="minimumSize">
+                   <size>
+                    <width>70</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Verdana</family>
+                    <pointsize>11</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Rename</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_5">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="deleteButton">
+                  <property name="minimumSize">
+                   <size>
+                    <width>60</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Verdana</family>
+                    <pointsize>11</pointsize>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
+                  </property>
+                  <property name="text">
+                   <string>Delete</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
               </item>
               <item>
                <spacer name="loadVSpacer2">
+                <property name="font">
+                 <font>
+                  <family>Verdana</family>
+                 </font>
+                </property>
                 <property name="orientation">
                  <enum>Qt::Vertical</enum>
                 </property>
@@ -553,14 +623,18 @@ color: rgb(0, 0, 0);</string>
              </layout>
              <zorder>loadedDecks</zorder>
              <zorder>loadedLabel</zorder>
-             <zorder>stageButton</zorder>
              <zorder>loadVSpacer2</zorder>
              <zorder>loadVSpacer1</zorder>
-             <zorder>deleteButton</zorder>
+             <zorder>horizontalLayoutWidget_2</zorder>
             </widget>
            </item>
            <item>
             <spacer name="loadRSpacer">
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+              </font>
+             </property>
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
@@ -572,7 +646,7 @@ color: rgb(0, 0, 0);</string>
              </property>
             </spacer>
            </item>
-           <item>
+           <item alignment="Qt::AlignRight">
             <widget class="QFrame" name="previewFrame">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -592,6 +666,11 @@ color: rgb(0, 0, 0);</string>
                <height>16777215</height>
               </size>
              </property>
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+              </font>
+             </property>
              <layout class="QVBoxLayout" name="verticalLayout">
               <property name="leftMargin">
                <number>10</number>
@@ -609,7 +688,7 @@ color: rgb(0, 0, 0);</string>
                 </property>
                 <property name="font">
                  <font>
-                  <family>Century</family>
+                  <family>Verdana</family>
                   <pointsize>14</pointsize>
                   <weight>50</weight>
                   <bold>false</bold>
@@ -645,14 +724,14 @@ color: rgb(0, 0, 0);</string>
                 </property>
                 <property name="font">
                  <font>
-                  <family>Century</family>
-                  <pointsize>12</pointsize>
+                  <family>Verdana</family>
+                  <pointsize>10</pointsize>
                  </font>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">background-color: rgb(255, 255, 255);
-alternate-background-color: rgb(179, 179, 179);
-color: rgb(0, 0, 0);</string>
+color: rgb(0, 0, 0);
+alternate-background-color: rgb(169, 236, 239);</string>
                 </property>
                 <property name="horizontalScrollBarPolicy">
                  <enum>Qt::ScrollBarAsNeeded</enum>
@@ -679,11 +758,16 @@ color: rgb(0, 0, 0);</string>
            </item>
            <item>
             <spacer name="loadFarRSpacer">
+             <property name="font">
+              <font>
+               <family>Verdana</family>
+              </font>
+             </property>
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
              <property name="sizeType">
-              <enum>QSizePolicy::Fixed</enum>
+              <enum>QSizePolicy::Expanding</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -697,109 +781,95 @@ color: rgb(0, 0, 0);</string>
          </widget>
         </item>
         <item>
-         <widget class="Line" name="lowerHLine">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>3</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">color: rgb(204, 204, 204);</string>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Plain</enum>
-          </property>
-          <property name="lineWidth">
-           <number>2</number>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
           <item>
-           <widget class="QFrame" name="frame">
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QFrame" name="frontSettingFrame">
             <property name="minimumSize">
              <size>
-              <width>200</width>
+              <width>0</width>
               <height>40</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>200</width>
+              <width>16777215</width>
               <height>40</height>
              </size>
             </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout">
-             <item>
-              <spacer name="startSpacer1">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeType">
-                <enum>QSizePolicy::Expanding</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>60</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="randomCheckBox">
+            <layout class="QHBoxLayout" name="horizontalLayout_10">
+             <item alignment="Qt::AlignHCenter">
+              <widget class="QLabel" name="promptLabel">
                <property name="font">
                 <font>
-                 <family>Century</family>
+                 <family>Verdana</family>
                  <pointsize>12</pointsize>
                 </font>
                </property>
-               <property name="styleSheet">
-                <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 102, 102, 0));</string>
+               <property name="text">
+                <string>Prompt with:</string>
+               </property>
+              </widget>
+             </item>
+             <item alignment="Qt::AlignHCenter">
+              <widget class="QRadioButton" name="promptWord">
+               <property name="font">
+                <font>
+                 <family>Verdana</family>
+                 <pointsize>12</pointsize>
+                </font>
                </property>
                <property name="text">
-                <string>Randomize</string>
+                <string>Word</string>
                </property>
                <property name="checked">
                 <bool>true</bool>
                </property>
-               <property name="tristate">
-                <bool>false</bool>
-               </property>
               </widget>
              </item>
-             <item>
-              <spacer name="startSpacer2">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+             <item alignment="Qt::AlignHCenter">
+              <widget class="QRadioButton" name="promptDef">
+               <property name="font">
+                <font>
+                 <family>Verdana</family>
+                 <pointsize>12</pointsize>
+                </font>
                </property>
-               <property name="sizeType">
-                <enum>QSizePolicy::Expanding</enum>
+               <property name="text">
+                <string>Definition</string>
                </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>11</width>
-                 <height>11</height>
-                </size>
-               </property>
-              </spacer>
+              </widget>
              </item>
             </layout>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="startButton">
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QFrame" name="repeatFrame">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -814,58 +884,28 @@ color: rgb(0, 0, 0);</string>
             </property>
             <property name="font">
              <font>
-              <family>Century</family>
-              <pointsize>12</pointsize>
+              <family>Verdana</family>
              </font>
             </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(204, 204, 204);
-color: rgb(0, 0, 0);</string>
-            </property>
-            <property name="text">
-             <string>Test Me!</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QFrame" name="frame_2">
-            <property name="minimumSize">
-             <size>
-              <width>200</width>
-              <height>40</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>200</width>
-              <height>40</height>
-             </size>
-            </property>
             <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
+             <enum>QFrame::NoFrame</enum>
             </property>
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_3">
              <item>
-              <spacer name="horizontalSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+              <widget class="QLabel" name="label_2">
+               <property name="text">
+                <string>Repeat:</string>
                </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
+              </widget>
              </item>
              <item>
               <widget class="QRadioButton" name="onceButton">
                <property name="font">
                 <font>
-                 <family>Century</family>
+                 <family>Verdana</family>
                  <pointsize>12</pointsize>
                 </font>
                </property>
@@ -890,7 +930,7 @@ color: rgb(0, 0, 0);</string>
                </property>
                <property name="font">
                 <font>
-                 <family>Century</family>
+                 <family>Verdana</family>
                  <pointsize>12</pointsize>
                 </font>
                </property>
@@ -905,21 +945,168 @@ color: rgb(0, 0, 0);</string>
                </property>
               </widget>
              </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_9">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QFrame" name="frame">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Verdana</family>
+             </font>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout">
              <item>
-              <spacer name="horizontalSpacer_2">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+              <widget class="QCheckBox" name="randomCheckBox">
+               <property name="font">
+                <font>
+                 <family>Verdana</family>
+                 <pointsize>12</pointsize>
+                </font>
                </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
+               <property name="styleSheet">
+                <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(255, 102, 102, 0));</string>
                </property>
-              </spacer>
+               <property name="text">
+                <string>Randomize</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+               <property name="tristate">
+                <bool>false</bool>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_10">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <spacer name="horizontalSpacer_7">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QPushButton" name="startButton">
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Verdana</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="text">
+             <string>Start</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="resumeButton">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Verdana</family>
+              <pointsize>12</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Resume</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_8">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </item>
@@ -932,6 +1119,11 @@ color: rgb(0, 0, 0);</string>
        <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
          <spacer name="cardLSpacer">
+          <property name="font">
+           <font>
+            <family>Verdana</family>
+           </font>
+          </property>
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -985,6 +1177,11 @@ background-color: rgb(0, 0, 0);</string>
             </item>
             <item>
              <spacer name="timeSpacer">
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+               </font>
+              </property>
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
@@ -1009,6 +1206,11 @@ background-color: rgb(0, 0, 0);</string>
                 <width>16777215</width>
                 <height>40</height>
                </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+               </font>
               </property>
               <property name="layoutDirection">
                <enum>Qt::RightToLeft</enum>
@@ -1045,6 +1247,12 @@ background-color: rgb(0, 0, 0);</string>
               <height>250</height>
              </size>
             </property>
+            <property name="font">
+             <font>
+              <family>Verdana</family>
+              <pointsize>13</pointsize>
+             </font>
+            </property>
             <property name="styleSheet">
              <string notr="true">background-color: rgb(255, 255, 255);</string>
             </property>
@@ -1075,6 +1283,11 @@ background-color: rgb(0, 0, 0);</string>
                <layout class="QVBoxLayout" name="cardFrontVLayout">
                 <item>
                  <spacer name="frontVSpacer1">
+                  <property name="font">
+                   <font>
+                    <family>Verdana</family>
+                   </font>
+                  </property>
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
                   </property>
@@ -1090,8 +1303,8 @@ background-color: rgb(0, 0, 0);</string>
                  <widget class="QLabel" name="wordLabel">
                   <property name="font">
                    <font>
-                    <family>Adobe Arabic</family>
-                    <pointsize>40</pointsize>
+                    <family>Verdana</family>
+                    <pointsize>24</pointsize>
                    </font>
                   </property>
                   <property name="styleSheet">
@@ -1110,6 +1323,11 @@ background-color: rgb(0, 0, 0);</string>
                 </item>
                 <item>
                  <spacer name="frontVSpacer3">
+                  <property name="font">
+                   <font>
+                    <family>Verdana</family>
+                   </font>
+                  </property>
                   <property name="orientation">
                    <enum>Qt::Vertical</enum>
                   </property>
@@ -1125,6 +1343,11 @@ background-color: rgb(0, 0, 0);</string>
                  <layout class="QHBoxLayout" name="flipHLayout">
                   <item>
                    <spacer name="flipLSpacer">
+                    <property name="font">
+                     <font>
+                      <family>Verdana</family>
+                     </font>
+                    </property>
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
                     </property>
@@ -1143,12 +1366,12 @@ background-color: rgb(0, 0, 0);</string>
                    <widget class="QPushButton" name="flipButton">
                     <property name="font">
                      <font>
-                      <family>Adobe Arabic</family>
-                      <pointsize>18</pointsize>
+                      <family>Verdana</family>
+                      <pointsize>11</pointsize>
                      </font>
                     </property>
                     <property name="styleSheet">
-                     <string notr="true">color: rgb(0, 0, 0);</string>
+                     <string notr="true"/>
                     </property>
                     <property name="text">
                      <string>Flip</string>
@@ -1157,6 +1380,11 @@ background-color: rgb(0, 0, 0);</string>
                   </item>
                   <item>
                    <spacer name="flipRSpacer">
+                    <property name="font">
+                     <font>
+                      <family>Verdana</family>
+                     </font>
+                    </property>
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
                     </property>
@@ -1178,94 +1406,23 @@ background-color: rgb(0, 0, 0);</string>
              </layout>
             </widget>
             <widget class="QWidget" name="back">
-             <layout class="QVBoxLayout" name="verticalLayout_4">
+             <layout class="QHBoxLayout" name="horizontalLayout_8">
               <item>
-               <spacer name="backUpperVSpacer">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>457</width>
-                  <height>3</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_6">
+               <layout class="QVBoxLayout" name="verticalLayout_4">
                 <item>
-                 <spacer name="horizontalSpacer_3">
+                 <spacer name="verticalSpacer">
                   <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
+                   <enum>Qt::Vertical</enum>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
-                    <width>40</width>
-                    <height>20</height>
+                    <width>20</width>
+                    <height>40</height>
                    </size>
                   </property>
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLabel" name="defLabel">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>150</height>
-                   </size>
-                  </property>
-                  <property name="font">
-                   <font>
-                    <family>Adobe Arabic</family>
-                    <pointsize>24</pointsize>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">color: rgb(0, 0, 0);</string>
-                  </property>
-                  <property name="text">
-                   <string>Flashcard Back</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                  <property name="wordWrap">
-                   <bool>true</bool>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <spacer name="horizontalSpacer_4">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>40</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-               </layout>
-              </item>
-              <item>
-               <spacer name="backLowerVSpacer">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>457</width>
-                  <height>15</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="backBottomHLayout">
-                <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
                  <widget class="QPushButton" name="incorrectButton">
                   <property name="minimumSize">
                    <size>
@@ -1297,20 +1454,95 @@ font: bold 24pt &quot;Palatino Linotype&quot;;</string>
                   </property>
                  </widget>
                 </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_9">
                 <item>
-                 <spacer name="backHSpacer">
+                 <layout class="QHBoxLayout" name="horizontalLayout_6"/>
+                </item>
+                <item>
+                 <spacer name="backLowerVSpacer">
+                  <property name="font">
+                   <font>
+                    <family>Verdana</family>
+                   </font>
+                  </property>
                   <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
+                   <enum>Qt::Vertical</enum>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
-                    <width>40</width>
-                    <height>20</height>
+                    <width>457</width>
+                    <height>15</height>
                    </size>
                   </property>
                  </spacer>
                 </item>
-                <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+                <item>
+                 <widget class="QLabel" name="defLabel">
+                  <property name="minimumSize">
+                   <size>
+                    <width>0</width>
+                    <height>150</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <family>Verdana</family>
+                    <pointsize>18</pointsize>
+                   </font>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">color: rgb(0, 0, 0);</string>
+                  </property>
+                  <property name="text">
+                   <string>Flashcard Back</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                  <property name="wordWrap">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="backUpperVSpacer">
+                  <property name="font">
+                   <font>
+                    <family>Verdana</family>
+                   </font>
+                  </property>
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>457</width>
+                    <height>3</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_8">
+                <item>
+                 <spacer name="verticalSpacer_2">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
                  <widget class="QPushButton" name="correctButton">
                   <property name="minimumSize">
                    <size>
@@ -1326,7 +1558,7 @@ font: bold 24pt &quot;Palatino Linotype&quot;;</string>
                   </property>
                   <property name="font">
                    <font>
-                    <family>Certificate</family>
+                    <family>Verdana</family>
                     <pointsize>24</pointsize>
                     <weight>50</weight>
                     <bold>false</bold>
@@ -1341,6 +1573,100 @@ font: bold 24pt &quot;Palatino Linotype&quot;;</string>
                  </widget>
                 </item>
                </layout>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="done">
+             <layout class="QVBoxLayout" name="verticalLayout_10">
+              <item>
+               <spacer name="verticalSpacer_3">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QScrollArea" name="scrollArea">
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="widgetResizable">
+                 <bool>true</bool>
+                </property>
+                <widget class="QWidget" name="scrollAreaWidgetContents">
+                 <property name="geometry">
+                  <rect>
+                   <x>0</x>
+                   <y>0</y>
+                   <width>470</width>
+                   <height>72</height>
+                  </rect>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_11">
+                  <item>
+                   <spacer name="horizontalSpacer_4">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>148</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="statsLabel">
+                    <property name="font">
+                     <font>
+                      <family>Verdana</family>
+                      <pointsize>18</pointsize>
+                     </font>
+                    </property>
+                    <property name="text">
+                     <string>Test Statistics</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_3">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>147</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                 </layout>
+                </widget>
+               </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer_4">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
               </item>
              </layout>
             </widget>
@@ -1360,6 +1686,11 @@ font: bold 24pt &quot;Palatino Linotype&quot;;</string>
               <height>20</height>
              </size>
             </property>
+            <property name="font">
+             <font>
+              <family>Verdana</family>
+             </font>
+            </property>
             <property name="styleSheet">
              <string notr="true"/>
             </property>
@@ -1374,12 +1705,12 @@ font: bold 24pt &quot;Palatino Linotype&quot;;</string>
              <widget class="QPushButton" name="backButton">
               <property name="font">
                <font>
-                <family>Adobe Arabic</family>
-                <pointsize>18</pointsize>
+                <family>Verdana</family>
+                <pointsize>12</pointsize>
                </font>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color: rgb(255, 255, 255);</string>
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>Back</string>
@@ -1388,6 +1719,11 @@ font: bold 24pt &quot;Palatino Linotype&quot;;</string>
             </item>
             <item>
              <spacer name="backButtonSpacer">
+              <property name="font">
+               <font>
+                <family>Verdana</family>
+               </font>
+              </property>
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
@@ -1405,6 +1741,11 @@ font: bold 24pt &quot;Palatino Linotype&quot;;</string>
         </item>
         <item>
          <spacer name="cardRSpacer">
+          <property name="font">
+           <font>
+            <family>Verdana</family>
+           </font>
+          </property>
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -1418,7 +1759,6 @@ font: bold 24pt &quot;Palatino Linotype&quot;;</string>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="donePage"/>
      </widget>
     </item>
    </layout>
@@ -1428,7 +1768,7 @@ font: bold 24pt &quot;Palatino Linotype&quot;;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>624</width>
+     <width>732</width>
      <height>22</height>
     </rect>
    </property>
@@ -1436,6 +1776,8 @@ font: bold 24pt &quot;Palatino Linotype&quot;;</string>
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionLoad"/>
+    <addaction name="actionStart"/>
     <addaction name="actionQuit"/>
    </widget>
    <addaction name="menuFile"/>
@@ -1466,6 +1808,22 @@ font: bold 24pt &quot;Palatino Linotype&quot;;</string>
   <action name="actionLoad_Deck_2">
    <property name="text">
     <string>Load Deck</string>
+   </property>
+  </action>
+  <action name="actionLoad">
+   <property name="text">
+    <string>Load Deck</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionStart">
+   <property name="text">
+    <string>Start</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
    </property>
   </action>
  </widget>

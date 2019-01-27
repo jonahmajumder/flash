@@ -1,6 +1,10 @@
 #!/bin/bash
 # package python program to .app
 
+echo "Using designated conda environment..."
+
+conda activate qtenv
+
 echo "Running script to package Flash app..."
 
 rm setup.py
@@ -9,8 +13,10 @@ py2applet --make-setup Flash.py *.ui FlashIcon.icns
 
 rm -rf build dist
 
+# if the below fails due to some macholib-libpython dylib:
+# ln -s existing_lib lib_script_can't find (a symbolic link)
+
 python setup.py py2app
 
 cp *.ui ./dist/Flash.app/Contents/MacOS/
-
 

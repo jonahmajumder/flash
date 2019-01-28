@@ -1,15 +1,13 @@
 #!/bin/bash
 # package python program to .app
 
-echo "Using designated conda environment..."
-
-conda activate qtenv
-
 echo "Running script to package Flash app..."
 
-rm setup.py
+if [ -f setup.py ]; then
+	rm setup.py;
+fi
 
-py2applet --make-setup Flash.py *.ui FlashIcon.icns
+py2applet --make-setup --packages=PyQt5 Flash.py *.ui FlashIcon.icns
 
 rm -rf build dist
 
@@ -20,3 +18,6 @@ python setup.py py2app
 
 cp *.ui ./dist/Flash.app/Contents/MacOS/
 
+echo "Running application from terminal..."
+
+./dist/Flash.app/Contents/MacOS/Flash

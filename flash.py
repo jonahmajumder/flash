@@ -65,6 +65,8 @@ class ImageDialog(QtWidgets.QMainWindow):
     def __init__(self):
         QtWidgets.QDialog.__init__(self)
 
+        print('App started successfully.\n')
+
         # get ui
         self.ui = uic.loadUi(resource_file('flashcards.ui'))
         self.resource_dir = resource_file('.')

@@ -9,10 +9,14 @@ Here is what the "load screen" currently looks like.
 The major components of the project are:
 * Qt UI files (created and edited in the "[Qt Creator](https://wiki.qt.io/Qt_Creator)" desktop application)
 * Python code to reference/modify UI elements and run the application
-* The [py2app](https://py2app.readthedocs.io/en/latest/#) utility, allowing for bundling of python code into standalone Mac apps
+* The [py2app](https://py2app.readthedocs.io/en/latest/#) utility, allowing for bundling of python code into apps
+
+The ultimate goal is a standalone (macOS) app that operates without any source files, or even any Python installation. All auxiliary code and data is included within the app itself (which is actually a folder, but appears as a single "executable"). I have therefore included a zipped version of the app ("Flash.zip"), which ideally should work without any modification, after being unzipped.
 
 ## FEATURES AND IMPROVEMENTS I HOPE TO IMPLEMENT
 - [ ] better graphic design
+- [ ] transitions based on action (i.e. flip, to stack, start)
+- [ ] list tested/remaining cards in deck
 - [ ] ability to write ignored comments in text file
 - [ ] pictures associated with vocab, and the ability to prompt with them
 - [X] reverse testing (show definition, require term)
@@ -38,10 +42,10 @@ I use a designated Anaconda virtual environment to build and run this program. T
 
 <img src="screenshots/conda_list.png" width="400">
 
-But installation of all of these packages was the result of just 3 conda (or pip) `install` commands:
+But installation of all of these packages (from scratch) can be accomplished by conda (or pip) `install` commands of only the following:
 * pip
 * pyqt5
 * py2app
 * sip
 
-And anaconda should handle the identification and installation of everything else.
+And Anaconda should handle the identification and installation of everything else.

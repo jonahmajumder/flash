@@ -8,11 +8,33 @@ from PyQt5 import QtCore, QtWidgets, uic
 from get_files import get_file_list
 from time import strftime
 import unicodedata
-# import pdb
+import pdb
 
 REPEAT = u'\u21BA'
 CHECK = u'\u2713'
 XMARK = 'X'
+
+def pyqt_set_trace():
+    '''Set a tracepoint in the Python debugger that works with Qt'''
+    from PyQt4.QtCore import pyqtRemoveInputHook
+    import pdb
+    import sys
+    pyqtRemoveInputHook()
+    # set up the debugger
+    debugger = pdb.Pdb()
+    debugger.reset()
+    # custom next to get outside of function scope
+    debugger.do_next(None) # run the next command
+    users_frame = sys._getframe().f_back # frame where the user invoked `pyqt_set_trace()`
+    debugger.interaction(users_frame, None)
+
+def debug_header():
+    timestamp = strftime('----------  %m/%d/%y %H:%M:%S  ---------')
+    s = '\n'
+    s += len(timestamp)*'-' + '\n'
+    s+= timestamp + '\n'
+    s+= len(timestamp)*'-' + '\n'
+    return s
 
 def parse_file_for_vocab(filename, delimiter='-'):
     file = open(filename, 'r')
@@ -212,6 +234,7 @@ class ImageDialog(QtWidgets.QMainWindow):
             d = QtWidgets.QFileDialog
             filename, _ = d.getOpenFileName(self, 'Open text file', self.default_dir, 'Text Files (*.txt)')
             # print(filename)
+            
             if len(filename) > 0:
                 words = parse_file_for_vocab(filename, delim)
                 if len(words) > 0:
@@ -221,6 +244,7 @@ class ImageDialog(QtWidgets.QMainWindow):
                     if len(name) > 0:
                         datafilename = 'flashcards_' + name + '_' + time.strftime('%Y%m%d_%H%M%S') + '.deck'
                         deckdata = [name, words]
+                        print(resource_file(datafilename))
                         pickle.dump(deckdata, open(resource_file(datafilename), 'wb'))
 
         self.get_saved_decks()
@@ -443,13 +467,9 @@ class ImageDialog(QtWidgets.QMainWindow):
             self.staged_deck_name = current_deck_name
         return
 
-# sys.stdout = open(resource_file('debug_log.txt'), 'a')
-# timestamp = strftime('----------  %m/%d/%y %H:%M:%S  ---------')
-# print('\n')
-# print(len(timestamp)*'-')
-# print(timestamp)
-# print(len(timestamp)*'-')
-# pdb.set_trace() 
+sys.stdout = open(resource_file('debug_log.txt'), 'a')
+print(debug_header())
+
 app = QtWidgets.QApplication(sys.argv)
 window = ImageDialog()
 sys.exit(app.exec_())

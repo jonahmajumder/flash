@@ -1,6 +1,13 @@
 #!/bin/bash
 # package python program to .app
 
+pyexpath="$(which python)"
+
+if [ $pyexpath != "/Users/jonahmajumder/.conda/envs/qtenv/bin/python" ]; then
+	echo "Wrong anaconda environment (correct environment is 'qtenv').";
+	exit 1;
+fi
+
 echo "Running script to package Flash app..."
 
 if [ -f setup.py ]; then

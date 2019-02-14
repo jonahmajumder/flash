@@ -30,11 +30,12 @@ The ultimate goal is a standalone (macOS) app that operates without any source f
 
 ## KNOWN BUGS
 - [ ] directory issues with pressing "import"-- where should it land you??
+- [ ] app crashes when deck finishes
 - [X] deck naming box "goes blank" issue (multiline issue)
 - [X] deck names obscured in choice combo box (was related to multiline issue)
 - [ ] recognize all dashes as delimiter?
 - [ ] text overflows on sides of card when no spaces present
-- [ ] flashcard text size should be based on whether it is a word or definition, not "front" or "back"
+- [X] flashcard text size should be based on whether it is a word or definition, not "front" or "back"
 
 ### Dependencies:
 

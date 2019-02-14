@@ -4,7 +4,7 @@ import sys, os
 import pickle
 from random import shuffle
 import time
-from PyQt5 import QtCore, QtWidgets, uic
+from PyQt5 import QtCore, QtWidgets, uic, QtGui
 from get_files import get_file_list
 from time import strftime
 import unicodedata
@@ -39,14 +39,16 @@ def debug_header():
 def parse_file_for_vocab(filename, delimiter='-'):
     file = open(filename, 'r')
     lines = file.readlines()
+    padded_delimiter = ' ' + delimiter + ' '
     word_list = []
     for line in lines:
         if len(line) > 1:
-            word = []
-            parts = line[0:-1].split(' ' + delimiter + ' ') # split by dash, ignore last \n char
-            word.append(parts[0].strip(' '))
-            word.append(('-'.join(parts[1:len(parts)])).strip(' ')) # account for later dashes
-            word_list.append(word)
+            if padded_delimiter in line:
+                word = []
+                parts = line[0:-1].split(padded_delimiter) # split by dash, ignore last \n char
+                word.append(parts[0].strip(' '))
+                word.append(('-'.join(parts[1:len(parts)])).strip(' ')) # account for later dashes
+                word_list.append(word)
     return word_list
 
 def delete_message(deck_name):
@@ -54,9 +56,13 @@ def delete_message(deck_name):
     return s
 
 def resource_file(filename):
-    filedir = os.path.dirname(os.path.abspath(__file__))
-    p = os.path.join(filedir, filename)
-    return p
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath('.')
+
+    return os.path.join(base_path, filename)
 
 class ImageDialog(QtWidgets.QMainWindow):
 
@@ -66,7 +72,6 @@ class ImageDialog(QtWidgets.QMainWindow):
         QtWidgets.QDialog.__init__(self)
 
         print('App started successfully.\n')
-
         # get ui
         self.ui = uic.loadUi(resource_file('flashcards.ui'))
         self.resource_dir = resource_file('.')
@@ -82,6 +87,9 @@ class ImageDialog(QtWidgets.QMainWindow):
         self.ui.resumeButton.setEnabled(False)
         self.word_index = 0
         self.remaining_words = []
+        self.stats = {}
+        self.stats['correct_words'] = []
+        self.stats['incorrect_words'] = []
 
         self.load_timer()
         self.load_naming_ui()
@@ -198,8 +206,11 @@ class ImageDialog(QtWidgets.QMainWindow):
 
     # ---------- user input functions ----------
 
-    def get_deck_name(self):
-        self.naming_ui.nameLineEdit.setPlaceholderText('Deck Name')
+    def get_deck_name(self, suggestion=''):
+        if len(suggestion) > 0:
+            self.naming_ui.nameLineEdit.setText(suggestion)
+        else:
+            self.naming_ui.nameLineEdit.setPlaceholderText('Deck Name')
         retval = self.naming_ui.exec_()
         entered_name = str(self.naming_ui.nameLineEdit.text())
         self.naming_ui.nameLineEdit.setText('')
@@ -235,7 +246,7 @@ class ImageDialog(QtWidgets.QMainWindow):
         else:
             d = QtWidgets.QFileDialog
             filename, _ = d.getOpenFileName(self, 'Open text file', self.default_dir, 'Text Files (*.txt)')
-            # print(filename)
+            print(filename)
             
             if len(filename) > 0:
                 words = parse_file_for_vocab(filename, delim)
@@ -246,8 +257,8 @@ class ImageDialog(QtWidgets.QMainWindow):
                     if len(name) > 0:
                         datafilename = 'flashcards_' + name + '_' + time.strftime('%Y%m%d_%H%M%S') + '.deck'
                         deckdata = [name, words]
-                        print(resource_file(datafilename))
                         pickle.dump(deckdata, open(resource_file(datafilename), 'wb'))
+                        print('Dumped pickle data into "{}."'.format(resource_file(datafilename)))
 
         self.get_saved_decks()
         return
@@ -271,6 +282,7 @@ class ImageDialog(QtWidgets.QMainWindow):
 
     def assess_resume(self):
         if self.test_in_progress:
+        # ADDITIONAL METRIC TO DETERMINE WHETHER STAGED DECK IS THE ONE IN PROGRESS
             self.ui.resumeButton.setEnabled(True)
         else:
             self.ui.resumeButton.setEnabled(False)
@@ -304,6 +316,8 @@ class ImageDialog(QtWidgets.QMainWindow):
 
     def card_setup(self):
         self.remaining_words = self.loaded_decks[self.staged_deck_name][:]
+        self.stats['correct_words'] = []
+        self.stats['incorrect_words'] = []
 
         if self.randomize:
             shuffle(self.remaining_words)
@@ -320,6 +334,8 @@ class ImageDialog(QtWidgets.QMainWindow):
 
     def update_card(self):
         Nwords = len(self.loaded_decks[self.staged_deck_name])
+
+        # NEED TO HANDLE TEXT SIZE HERE!
 
         if self.prompt_word:
             front = self.remaining_words[0][0]
@@ -341,6 +357,12 @@ class ImageDialog(QtWidgets.QMainWindow):
     def next_word(self, correct):
         current_word = self.remaining_words[0]
 
+        # add to stats
+        if correct:
+            self.stats['correct_words'].append(current_word[0])
+        else:
+            self.stats['incorrect_words'].append(current_word[0])
+
         del(self.remaining_words[0])
         if not correct:
             if self.repeat_until_done:
@@ -357,10 +379,25 @@ class ImageDialog(QtWidgets.QMainWindow):
 
     def set_card_front(self, text):
         self.ui.wordLabel.setText(text)
+        newftsize = 24 - 2 * round(len(text)/100)
+        newfont = QtGui.QFont()
+        newfont.setFamily(self.ui.wordLabel.font().family())
+        newfont.setPointSize(newftsize)
+        self.ui.wordLabel.setFont(newfont)
+        # print('Text is {0} chars, new font size is {1}'.format(len(text), newftsize))
+        # print(self.ui.wordLabel.font().pointSize())
         return
 
     def set_card_back(self, text):
         self.ui.defLabel.setText(text)
+        newftsize = 24 - 2 * round(len(text)/100)
+        # self.ui.defLabel.font().setPointSize(newftsize)
+        newfont = QtGui.QFont()
+        newfont.setFamily(self.ui.defLabel.font().family())
+        newfont.setPointSize(newftsize)
+        self.ui.defLabel.setFont(newfont)
+        # print('Text is {0} chars, new font size is {1}'.format(len(text), newftsize))
+        # print(self.ui.defLabel.font().pointSize())
         return
 
     def back_to_load(self):
@@ -375,16 +412,22 @@ class ImageDialog(QtWidgets.QMainWindow):
         return
 
     def generate_stats(self):
-        s = ''
-        s += self.testing_deck_name + '\n'
-
+        print(self.stats['correct_words'])
+        print(self.stats['incorrect_words'])
+        s = 'Nice job! You completed the flashcard deck "{}."\n'.format(self.testing_deck_name)
         return s
 
     def done_function(self):
         self.test_in_progress = False
+        self.test_timer.stop()
+        Nwords = len(self.loaded_decks[self.staged_deck_name])
+        words_done = Nwords - len(self.remaining_words)
+        self.ui.cardProgressBar.setValue(words_done)
+        self.ui.progressNumber.setText(' {0} / {1} '.format(words_done, Nwords))
+
         statStr = self.generate_stats()
         self.testing_deck_name = None
-        self.ui.statsLabel.setText(s)
+        self.ui.statsLabel.setText(statStr)
         self.ui.cardStack.setCurrentIndex(2)
         return
 
@@ -411,7 +454,7 @@ class ImageDialog(QtWidgets.QMainWindow):
         current_deck_name = str(self.ui.loadedDecks.currentText())
         deck_index = self.ui.loadedDecks.currentIndex()
 
-        new_name = self.get_deck_name()
+        new_name = self.get_deck_name(suggestion=current_deck_name)
         if len(new_name) > 0:
 
             self.loaded_decks[new_name] = self.loaded_decks.pop(current_deck_name)
